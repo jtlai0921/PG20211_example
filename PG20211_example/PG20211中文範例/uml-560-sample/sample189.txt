@@ -1,0 +1,154 @@
+
+BallMove2.java
+++++++++++
+import java.awt.*; // Frame, Graphics, Color, Image
+import java.awt.event.*; // WindowListener, WindowEvent
+
+class FrameSensor {
+
+	int x, y; // ¦bÃş§O¹Ï¤¤¬Oprivate
+	
+	int CheckFrame() {
+
+		if (x >= 300 - 20) // ²y²¾°Ê½d³òªºÀË¬d
+			return 1;
+		if (y >= 200 - 20)
+			return 2;
+		if (x <= 0)
+			return 3;
+		if (y <= 0)
+			return 4;
+		
+		return 0;
+	}
+}
+
+class FrameMonitor {
+	private FrameSensor fs;
+	private ControlAction ca;
+
+	void SetPosition(int x, int y) {
+		fs = new FrameSensor();
+		fs.x = x;
+		fs.y = y;
+		ca = new ControlAction();
+		ca.SelectAction(fs.CheckFrame());
+	}
+}
+
+class ControlAction {
+	private VirtualMotor vm;
+
+	void SelectAction(int i) {
+		vm = new VirtualMotor();
+
+		switch (i) {
+			case 1:
+				vm.Bound(1);@//±q¥k°¼ªğ¦^
+				break;
+			case 2:
+				vm.Bound(2);@//±q¤U¤èªğ¦^
+				break;
+			case 3:
+				vm.Bound(3);@//±q¥ª°¼ªğ¦^
+				break;
+			case 4:
+				vm.Bound(4);@//±q¤W¤èªğ¦^
+		}
+	}
+}
+
+class VirtualMotor {
+
+	void Bound(int i) { // Move()¡ABound()¯S®í±¡ªp³B²z
+		switch (i) {
+			case 1:@//ªğ¦^¤è¦V½Õ¾ã
+				BallMove2.mx *= (-1);
+				break;
+			case 2:
+				BallMove2.my *= (-1);
+				break;
+			case 3:
+				BallMove2.mx *= (-1);
+				break;
+			case 4:
+				BallMove2.my *= (-1);
+		}
+	}
+}
+
+class BallMove2 extends Frame implements Runnable, WindowListener{	
+	Image image;
+
+	Thread thread;
+	int x, y, r;
+	static int mx, my;
+
+	public static void main(String args[ ]) {
+
+		BallMove2 frame;
+
+		frame = new BallMove2("Move Ball"); // «Ø¥ß·sªºframeª«¥ó
+		frame.init( ); // °õ¦æframeªºinit( )
+		frame.start( ); //°õ¦æframeªºstart( )
+		frame.run( ); //°õ¦æframeªºrun( )
+	}
+
+	public BallMove2(String title) {
+		setTitle(title); // frame¼ĞÃDªº³]©w
+	}
+
+	public void init( ) {
+		setBackground(Color.white);
+		setForeground(Color.black);
+		setSize(300, 200); // frame¤j¤pªº³]©w
+		show( ); //Åã¥Ü
+		addWindowListener(this); // ¥[¤J Listener
+		x = 150; // ²yªºªì©l¦ì¸m
+		y = 100;
+		mx = my= 2; // ²¾°Ê¶¡¹j
+	}
+
+	public void paint(Graphics g) {
+		g.setColor(Color.red);
+		g.fillOval(x, y, 20, 20);
+	}
+
+	public void start( ) {
+		thread = new Thread(this); // °õ¦æºü±Ò°Ê
+	}
+	public void stop( ) {
+		thread = null;
+	}
+ 	public void run( ) {
+		FrameMonitor fm;
+		fm = new FrameMonitor();
+
+		while (true) {
+			repaint( );
+			try {
+				thread.sleep(20); // °õ¦æ°±20millisecond
+			} catch (InterruptedException e) {
+
+@@@@@@@@@@@@		// ²§±`¤¤Â_³B²z
+	  			break;
+			}
+			fm.SetPosition(x, y);
+			x += mx;
+			y += my;
+		}
+	}
+
+	// WindowListener¤¶­±¦U¤èªkªº©w¸q
+	public void windowOpened(WindowEvent evt) { }
+	public void windowClosing(WindowEvent evt) {
+		dispose( );  				// ¥á±óframe
+	}
+	public void windowClosed(WindowEvent evt) {
+		System.exit(0);				// µ{¦¡µ²§ô
+	}
+	public void windowIconified(WindowEvent evt) { }
+	public void windowDeiconified(WindowEvent evt) { }
+	public void windowActivated(WindowEvent evt) { }
+	public void windowDeactivated(WindowEvent evt) { }
+}

@@ -1,0 +1,55 @@
+
+
+class MyMain{
+    static public void main(String[] args){
+		Strategy1 number=new Strategy1();
+		Strategy2 alpha=new Strategy2();
+		MyClass my1=new MyClass(number);
+		MyClass my2=new MyClass(alpha);
+
+		System.out.println("Strategy 1");
+		my1.Print();	
+		System.out.println("Strategy 2");
+		my2.Print();
+    }
+}
+class MyClass{
+    Strategy strategy;Å@		Å@//¥£®—Ωs∏π™∫™´•Û
+    public MyClass(Strategy s){
+		strategy=s;
+    }
+    void Print(){
+	strategy.CountUp();
+		System.out.println("Item 1");
+		strategy.CountUp();
+		System.out.println("Item 2");
+		strategy.CountUp();
+		System.out.println("Item 3");
+    }
+}
+
+interface Strategy{
+    void CountUp();
+}
+
+class Strategy1 implements Strategy{	Å@//®œ•Œº∆¶r®”Ωs∏π
+    int n;
+    public Strategy1(){
+		n=1;
+    }
+    public void CountUp(){
+		System.out.print(n + ": ");
+		n++;
+    }
+}
+
+class Strategy2 implements Strategy{	Å@//®œ•Œ§Â¶r®”Ωs∏π
+    char c;
+    public Strategy2(){
+		c='a';
+    }
+    public void CountUp(){
+		System.out.print(c + ": ");
+		c++;
+    }
+}

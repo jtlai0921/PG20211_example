@@ -1,0 +1,21 @@
+public class MyMain
+{
+	static public void main(String args[]) {
+		CreatorA aCreatorA = new CreatorA();
+		ConcreteProductA aProductA = aCreatorA.FactoryMethod();
+	}
+}
+
+class CreatorA
+{
+	public ConcreteProductA FactoryMethod() {
+		return new ConcreteProductA();
+	}
+}
+
+class ConcreteProductA {
+
+	public ConcreteProductA() {
+		System.out.print("ConcreteProductA");
+	}
+}

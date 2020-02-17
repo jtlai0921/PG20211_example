@@ -1,0 +1,35 @@
+Module Module1
+
+    Sub Main()
+        Dim r As Rectangle = New rectangle()
+        r.Init(2, 1)
+        r.AreaSize()
+        Dim s As Square = New Square()
+        s.Init(2, 1)
+        s.AreaSize()
+
+    End Sub
+
+End Module
+Class Rectangle
+    Protected h As Integer
+    Protected w As Integer
+
+    Public Sub Init(ByVal h As Integer, ByVal w As Integer)
+        Me.h = h
+        Me.w = w
+    End Sub
+
+    Public Overridable Sub AreaSize()
+        Console.WriteLine("Rectangle Area Size = "+ Format(h * w))
+    End Sub
+End Class
+
+Class Square
+    Inherits Rectangle
+
+    Public Overrides Sub AreaSize()
+        Console.WriteLine("Square Area Size = "+ Format(h * h))
+    End Sub
+
+End Class

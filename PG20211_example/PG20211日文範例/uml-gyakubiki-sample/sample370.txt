@@ -1,0 +1,52 @@
+
+
+class MyMain{
+    public static void main(String[] args){
+		LinkedList l1=new LinkedList(3,null);
+		LinkedList l2=new LinkedList(2,l1);
+		LinkedList l3=new LinkedList(1,l2);
+
+		Iterator i=l3.CreateIterator();
+		while(i.MoveNext()){
+	    		System.out.println(i.GetCurrent().GetValue());
+		}
+    }
+}
+
+class LinkedList{
+    int value;
+    LinkedList next;
+
+    public LinkedList(int val,LinkedList n){
+		value=val;
+		next=n;
+    }
+    public int GetValue(){
+		return value;
+    }
+    public Iterator CreateIterator(){
+		return new Iterator(this);
+    }
+
+}
+
+class Iterator{　		//Iteratorパターン
+    LinkedList start;
+    LinkedList current;
+    public Iterator(LinkedList c){
+		start=c;
+		current=null;
+    }
+    LinkedList GetCurrent(){
+		return current;
+    }
+    boolean MoveNext(){
+		if(current==null){
+	  	  current=start;
+		}
+		else{
+	    		current=current.next;
+		}
+		return current!=null;
+    }
+}

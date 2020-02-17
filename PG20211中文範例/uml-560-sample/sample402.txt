@@ -1,0 +1,42 @@
+
+
+#include <iostream>
+using namespace std;
+
+
+class TemplateClass{
+public:
+  void templateMethod(){Å@		//ºg§Uæ„≈È™∫¨yµ{
+    Operation1();
+    Operation2();
+  }
+protected:
+  virtual void Operation1()=0;Å@	//©w∏q¶U≠”®Á¶°
+  virtual void Operation2()=0;
+};
+
+class ConcreteClassA : public TemplateClass{
+  void Operation1(){
+    cout << "ClassA Operation1" << endl;
+  }
+  void Operation2(){
+    cout << "ClassA Operation2" << endl;
+  }
+};
+
+class ConcreteClassB : public TemplateClass{
+  void Operation1(){
+    cout << "ClassB Operation1" << endl;
+  }
+  void Operation2(){
+    cout << "ClassB Operation2" << endl;
+  }
+};
+
+int main(void){
+  ConcreteClassA cca;
+  ConcreteClassB ccb;
+
+  cca.templateMethod();
+  ccb.templateMethod();
+}

@@ -1,0 +1,16 @@
+interface Area { 			// 介面
+	void AreaSize();
+}
+
+class Rectangle implements Area {	// 介面的實作
+	private int h;
+	private int w;
+
+	public void Init(int h, int w) {
+		this.h = h;
+		this.w = w;
+	}
+	public void AreaSize() {
+		System.out.println("Square Area Size="+ (h * w));
+	}
+}

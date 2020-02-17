@@ -1,0 +1,16 @@
+
+
+Option Explicit
+
+Implements ISuite
+
+Private Function ISuite_Suite() As ITest
+Dim suite As New TestSuite
+  suite.SuiteName = TypeName(Me)
+  'TODO: Add suitename here
+
+  'TODO: Add your Fixtures here
+  suite.AddFixture New CalculatorTest
+
+  Set ISuite_Suite = suite
+End Function

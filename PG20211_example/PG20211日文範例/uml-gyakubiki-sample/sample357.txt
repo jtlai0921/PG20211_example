@@ -1,0 +1,39 @@
+
+
+public class MyMain
+{
+    static public void main(String args[]) {
+		ConcreteClassA cca = new ConcreteClassA();
+		ConcreteClassB ccb = new ConcreteClassB();
+
+		cca.templateMethod();
+		ccb.templateMethod();
+    }
+}
+
+abstract class TemplateClass {
+    void templateMethod() {
+		Operation1();
+		Operation2();
+    }
+    protected abstract void Operation1();
+    protected abstract void Operation2();
+}
+//ÀÛ‚Ìˆ—‚Í‚±‚±‚Å’è‹`‚µ‚Ä‚¢‚é
+class ConcreteClassA extends TemplateClass {
+    protected void Operation1() {
+		System.out.println("ClassA Operation1");
+    }
+    protected void Operation2() {
+		System.out.println("ClassA Operation2");
+    }
+}
+//ÀÛ‚Ìˆ—‚Í‚±‚±‚Å’è‹`‚µ‚Ä‚¢‚é
+class ConcreteClassB extends TemplateClass {
+    protected void Operation1() {
+		System.out.println("ClassB Operation1");
+    }
+    protected void Operation2() {
+		System.out.println("ClassB Operation2");
+    }
+}

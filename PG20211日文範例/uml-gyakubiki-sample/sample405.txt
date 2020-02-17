@@ -1,0 +1,42 @@
+
+
+#include <iostream>
+using namespace std;
+
+class Prototype{
+  int field1;
+  int field2;
+public:
+  Prototype* Clone(){ 		//コピーをするメソッド
+    Prototype* ret=new Prototype;
+    ret->field1=field1;
+
+    ret->field2=field2;
+    return ret;
+  }
+  void SetField1(int i){
+    field1=i;
+  }
+  void SetField2(int i){
+    field2=i;
+  }
+  void Print(){
+    cout << "Field1 = " << field1;
+    cout << ", Field2 = " << field2;
+    cout << endl;
+  }
+};
+
+int main(void)
+{
+  Prototype aPrototypeA;
+  aPrototypeA.SetField1(3);
+  aPrototypeA.SetField2(4);
+  aPrototypeA.Print();
+	//aProtoTypeAを元に作成する
+  Prototype* aPrototypeB=aPrototypeA.Clone();
+  aPrototypeB->SetField2(5);
+  aPrototypeB->Print();
+
+  delete aPrototypeB;
+}

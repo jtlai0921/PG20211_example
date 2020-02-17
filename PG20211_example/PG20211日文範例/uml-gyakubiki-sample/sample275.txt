@@ -1,0 +1,29 @@
+Module Module1
+
+    Sub Main()
+        Dim c As Calculator = New Calculator()
+        c.add(2, 3)
+        c.multiply(2, 3)
+    End Sub
+
+End Module
+
+Public Interface addition
+    Sub add(ByVal a As Integer, ByVal b As Integer)
+End Interface
+
+Public Interface multiplication
+    Sub multiply(ByVal a As Integer, ByVal b As Integer)
+End Interface
+
+Class Calculator
+    Implements addition, multiplication
+    Public Sub add(ByVal a As Integer,   ByVal b As Integer)Implements addition.add
+        Console.WriteLine(Format(a) + " + "    +Format(b) + " = " + Format(a + b))
+    End Sub
+
+    Public Sub multiply(ByVal a As Integer,  ByVal b As Integer)Implements multiplication.multiply
+        Console.WriteLine(Format(a) + " * "  +Format(b) + " = " + Format(a * b))
+    End Sub
+
+End Class

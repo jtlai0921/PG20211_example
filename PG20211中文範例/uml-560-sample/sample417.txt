@@ -1,0 +1,72 @@
+
+
+#include <iostream>
+using namespace std;
+class ClassA;
+class ClassB;
+class Mediator;
+
+class ClassA{
+  int n;
+
+  Mediator* m;
+  friend class Mediator;
+public:
+  void Set(int i);
+  void Print(){
+    cout << "ClassA: " << n << endl;
+  }
+};
+class ClassB{
+  string s;
+  Mediator* m;
+  friend class Mediator;
+public:
+  void Set(const char* c);
+  void Print(){
+    cout << "ClassB: " << s << endl;
+  }
+};
+class Mediator{@		//°µClassA©MClassB¤§¶¡ªº¥ò¤¶ªºÃş§O
+  ClassA* ca;
+  ClassB* cb;
+public:
+  Mediator(ClassA* a,ClassB* b){
+    ca=a;
+    ca->m=this;
+    cb=b;
+    cb->m=this;
+  }
+  void AChanged(){@		//±NAªºÅÜ§ó¶Çµ¹B
+    char buf[256];
+    sprintf(buf,"%d",ca->n);
+    cb->s=buf;
+  }
+  void BChanged(){@		//±NBªºÅÜ§ó¶Çµ¹A
+    ca->n=atoi(cb->s.c_str());
+  }
+};
+void ClassA::Set(int i){
+  n=i;
+  m->AChanged();@		//ÅÜ§ó«á³qª¾Mediator
+}
+void ClassB::Set(const char* c){
+  s=c;
+
+  m->BChanged();@		//ÅÜ§ó«á³qª¾Mediator
+}
+
+int main(void)
+{
+  ClassA ca;
+  ClassB cb;
+  Mediator m(&ca,&cb);
+
+  ca.Set(3);
+  ca.Print();
+  cb.Print();
+
+  cb.Set("42");
+  ca.Print();
+  cb.Print();
+}

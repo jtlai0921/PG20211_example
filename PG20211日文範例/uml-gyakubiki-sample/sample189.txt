@@ -1,0 +1,154 @@
+
+BallMove2.java
+++++++++++
+import java.awt.*; // Frame, Graphics, Color, Image
+import java.awt.event.*; // WindowListener, WindowEvent
+
+class FrameSensor {
+
+	int x, y; //クラス図では、private
+	
+	int CheckFrame() {
+
+		if (x >= 300 - 20) // ボールの移動範囲チェック
+			return 1;
+		if (y >= 200 - 20)
+			return 2;
+		if (x <= 0)
+			return 3;
+		if (y <= 0)
+			return 4;
+		
+		return 0;
+	}
+}
+
+class FrameMonitor {
+	private FrameSensor fs;
+	private ControlAction ca;
+
+	void SetPosition(int x, int y) {
+		fs = new FrameSensor();
+		fs.x = x;
+		fs.y = y;
+		ca = new ControlAction();
+		ca.SelectAction(fs.CheckFrame());
+	}
+}
+
+class ControlAction {
+	private VirtualMotor vm;
+
+	void SelectAction(int i) {
+		vm = new VirtualMotor();
+
+		switch (i) {
+			case 1:
+				vm.Bound(1);　//　右端ではね返る
+				break;
+			case 2:
+				vm.Bound(2);　//　下端ではね返る
+				break;
+			case 3:
+				vm.Bound(3);　//　左端ではね返る
+				break;
+			case 4:
+				vm.Bound(4);　//　上端ではね返る
+		}
+	}
+}
+
+class VirtualMotor {
+
+	void Bound(int i) { // Move()は、Bound()の特殊な場合
+		switch (i) {
+			case 1:　//　はね返るときの方向の調整
+				BallMove2.mx *= (-1);
+				break;
+			case 2:
+				BallMove2.my *= (-1);
+				break;
+			case 3:
+				BallMove2.mx *= (-1);
+				break;
+			case 4:
+				BallMove2.my *= (-1);
+		}
+	}
+}
+
+class BallMove2 extends Frame implements Runnable, WindowListener{	
+	Image image;
+
+	Thread thread;
+	int x, y, r;
+	static int mx, my;
+
+	public static void main(String args[ ]) {
+
+		BallMove2 frame;
+
+		frame = new BallMove2("Move Ball"); // 新しいフレーム作成
+		frame.init( ); // フレームのinit( )実行
+		frame.start( ); // フレームのstart( )実行
+		frame.run( ); // フレームのrun( )実行
+	}
+
+	public BallMove2(String title) {
+		setTitle(title); // フレームにタイトル設定
+	}
+
+	public void init( ) {
+		setBackground(Color.white);
+		setForeground(Color.black);
+		setSize(300, 200); // フレームサイズ設定
+		show( ); // フレーム表示
+		addWindowListener(this); // ウィンドウリスナー追加
+		x = 150; // ボール初期位置
+		y = 100;
+		mx = my= 2; // ボール移動間隔
+	}
+
+	public void paint(Graphics g) {
+		g.setColor(Color.red);
+		g.fillOval(x, y, 20, 20);
+	}
+
+	public void start( ) {
+		thread = new Thread(this); // スレッドスタート
+	}
+	public void stop( ) {
+		thread = null;
+	}
+ 	public void run( ) {
+		FrameMonitor fm;
+		fm = new FrameMonitor();
+
+		while (true) {
+			repaint( );
+			try {
+				thread.sleep(20); // スレッドを20ミリ秒スリープ
+			} catch (InterruptedException e) {
+
+　　　　　　　　　　　　		// ほかのスレッドの割り込み例外処理	
+	  			break;
+			}
+			fm.SetPosition(x, y);
+			x += mx;
+			y += my;
+		}
+	}
+
+	// WindowListenerインターフェイスの各メソッドを定義
+	public void windowOpened(WindowEvent evt) { }
+	public void windowClosing(WindowEvent evt) {
+		dispose( );  				// フレームの廃棄
+	}
+	public void windowClosed(WindowEvent evt) {
+		System.exit(0);				// プログラム終了
+	}
+	public void windowIconified(WindowEvent evt) { }
+	public void windowDeiconified(WindowEvent evt) { }
+	public void windowActivated(WindowEvent evt) { }
+	public void windowDeactivated(WindowEvent evt) { }
+}

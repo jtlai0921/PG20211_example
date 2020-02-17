@@ -1,0 +1,15 @@
+Module Module1
+
+    Sub Main()
+        Dim a(2) As Integer
+
+        a(0) = 0
+        a(1) = 1
+        a(2) = 2
+
+        Console.WriteLine(Format(a(0)))
+        Console.WriteLine(Format(a(1)))
+        Console.WriteLine(Format(a(2)))
+    End Sub
+
+End Module

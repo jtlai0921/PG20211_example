@@ -1,0 +1,63 @@
+
+
+#include <iostream>
+using namespace std;
+class Visitor;
+class VisitorPrint;
+class ElementA;
+class ElementB;
+
+class Element{
+public:
+  virtual void Accept(Visitor* v)=0;
+};
+
+class Visitor{　				//ある処理を表すオブジェクト
+public:
+  virtual void VisitA(ElementA* e)=0;　	//ElementAの処理
+  virtual void VisitB(ElementB* e)=0;　	//ElementBの処理
+};
+
+class ElementA : public Element{
+  int n;
+
+  friend class VisitorPrint;
+public:
+  ElementA(int i){
+    n=i;
+  }
+  void Accept(Visitor* v){
+    v->VisitA(this);
+  }
+};
+class ElementB : public Element{
+  string msg;
+  friend class VisitorPrint;
+public:
+  ElementB(const char* s){
+    msg=s;
+  }
+  void Accept(Visitor* v){
+    v->VisitB(this);
+  }
+};
+
+class VisitorPrint : public Visitor{	//処理の例（印刷）
+public:
+  void VisitA(ElementA* e){
+    cout << e->n << " ";
+  }
+  void VisitB(ElementB* e){
+    cout << e->msg << " ";
+  }
+};
+
+int main(void)
+{
+  Element* elements[3]={new ElementB("Hello"),new ElementA(42), new ElementB("peoples")};
+  VisitorPrint visit;
+  for(int i=0;i<3;i++){
+    elements[i]->Accept(&visit);
+  }
+  cout << endl;
+}

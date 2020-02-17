@@ -1,0 +1,63 @@
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Observer;
+
+class Subject{
+  vector<Observer*> observers;
+public:
+
+  int value;
+  Subject(){
+    value=0;
+  }
+  void AddObserver(Observer* observer){
+    observers.push_back(observer);
+  }
+  void aStateChanged(int j);
+};
+
+class Observer{Б@			//│Q│qк╛┼▄зєк║клеє
+public:
+  virtual void done(Subject* subject)=0;
+};
+
+class ObserverA : public Observer{
+public:
+  void done(Subject* subject){
+    cout << "Observer A: received -  State Change(" <<
+Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@Б@subject->value << ")" << endl;
+  }
+};
+class ObserverB : public Observer{
+public:
+  void done(Subject* subject){
+    cout << "Observer B: received -  State Change(" << subject->value << ")" << endl;
+  }
+};
+
+void Subject::aStateChanged(int j){
+  value=j;
+  for(int i=0;i<observers.size();i++){
+    observers[i]->done(this);Б@		//│qк╛┼▄зє
+  }
+}
+
+int main(void)
+{
+  Subject s;
+  ObserverA moa;
+  ObserverB mob;
+
+
+  s.AddObserver(&moa);
+  s.AddObserver(&mob);
+
+
+  s.aStateChanged(1);
+  s.aStateChanged(2);
+  s.aStateChanged(3);
+}

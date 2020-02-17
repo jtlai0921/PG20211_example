@@ -1,0 +1,42 @@
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Message{@			//Åã¥Ü°T®§ªºÃş§O
+public:
+  virtual void Print()=0;
+};
+
+class ClassA : public Message{
+  const char* msg;
+public:
+  ClassA(const char* m){
+    msg=m;
+  }
+  void Print(){
+    cout << msg;
+  }
+};
+//¦b°T®§¤W°µ¨ä¥¦°l¥[ªº¸Ë¹¢¾¹
+class MessageDecorator : public Message{
+  Message* ca;
+public:
+  MessageDecorator(ClassA& c){
+    ca=&c;
+  }
+
+  void Print(){
+    cout << "Message: ";
+    ca->Print();
+    cout << "." << endl;
+  }
+};
+
+int main(void)
+{
+  ClassA ca("Hello");
+  MessageDecorator decorator(ca);
+  decorator.Print();
+}

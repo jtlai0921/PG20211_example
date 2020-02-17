@@ -1,0 +1,26 @@
+#include <iostream>
+#include <stdexcept>				//例外クラスのインクルード
+using namespace std;
+
+class DataException : public exception {
+};
+
+int main (void)
+{
+	int a = 0;
+	try
+	{
+		if (a == 0) {
+			throw DataException();
+		}
+		int b = 10/a;
+		cout << 10 << " / " << a << " = "  << b << endl;
+
+	}
+	catch (const exception& e)
+	{
+		cout << e.what() << endl;
+	}
+
+	return 0;
+};

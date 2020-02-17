@@ -1,0 +1,19 @@
+
+import java.util.Vector;
+
+class SampleVector {
+	public static void main(String args[]) {
+		int i;
+		//²£¥Í®×¨Ò¡A·í¹w³]ªº®e¶q(2)¤£°÷¥Î¡A«h³v¦¸¼W¥[1­ÓƒX¶¬
+		Vector v = new Vector(2,1);
+		//°ò¥»¸ê®Æ«¬¨Ï¥Î¥]ÂĞÃş§O(Wrapper class)¨Ó¦s©ñ
+		v.addElement(new Integer(0));
+		v.addElement(new Integer(1));
+		v.addElement(new Integer(2));
+		for(i = 0; i <= 2; i++) {
+			// °ò¥»¸ê®Æ«¬¨Ï¥Î¥]ÂĞÃş§O¨Ó¨ú±o
+			System.out.println
+			(((Integer)v.elementAt(i)).intValue());
+		}
+	}
+}

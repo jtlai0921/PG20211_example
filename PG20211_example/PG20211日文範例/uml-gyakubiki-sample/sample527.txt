@@ -1,0 +1,3 @@
+Public Function addition(a As Integer, b As Integer) As Integer
+   	addition = a + b
+End Function

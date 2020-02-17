@@ -1,0 +1,72 @@
+
+
+#include <iostream>
+using namespace std;
+class ClassA;
+class ClassB;
+class Mediator;
+
+class ClassA{
+  int n;
+
+  Mediator* m;
+  friend class Mediator;
+public:
+  void Set(int i);
+  void Print(){
+    cout << "ClassA: " << n << endl;
+  }
+};
+class ClassB{
+  string s;
+  Mediator* m;
+  friend class Mediator;
+public:
+  void Set(const char* c);
+  void Print(){
+    cout << "ClassB: " << s << endl;
+  }
+};
+class Mediator{　		//ClassAとClassBの仲介をするクラス
+  ClassA* ca;
+  ClassB* cb;
+public:
+  Mediator(ClassA* a,ClassB* b){
+    ca=a;
+    ca->m=this;
+    cb=b;
+    cb->m=this;
+  }
+  void AChanged(){　		//Aの変更をBへ伝える
+    char buf[256];
+    sprintf(buf,"%d",ca->n);
+    cb->s=buf;
+  }
+  void BChanged(){　		//Bの変更をAへ伝える
+    ca->n=atoi(cb->s.c_str());
+  }
+};
+void ClassA::Set(int i){
+  n=i;
+  m->AChanged();　		//変更後Mediatorに通知
+}
+void ClassB::Set(const char* c){
+  s=c;
+
+  m->BChanged();　		//変更後Mediatorに通知
+}
+
+int main(void)
+{
+  ClassA ca;
+  ClassB cb;
+  Mediator m(&ca,&cb);
+
+  ca.Set(3);
+  ca.Print();
+  cb.Print();
+
+  cb.Set("42");
+  ca.Print();
+  cb.Print();
+}

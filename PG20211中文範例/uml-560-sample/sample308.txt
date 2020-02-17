@@ -1,0 +1,48 @@
+#include	<iostream>
+using namespace std;
+
+class _Rectangle {
+private:
+	int h;
+	int w;
+
+public:
+	void Init(int hh, int ww) {
+		h = hh;
+		w = ww;
+	}
+	void AreaSize() {
+		cout << "_Rectangle Area Size=" << (h * w) << endl;
+
+	}
+};
+
+class Square {
+private:
+	int h;
+	_Rectangle* delegate;
+
+public:
+	void Init(int hh) {
+		h = hh;
+	}
+	Square() {
+		delegate = new _Rectangle;
+	}
+
+	void AreaSize() {
+		delegate->Init(h, h);
+		delegate->AreaSize();
+	}
+};
+
+int main(void) {
+	_Rectangle* r1 = new _Rectangle();
+	r1->Init(2, 1);
+	r1->AreaSize();
+	Square* r2 = new Square();
+	r2->Init(2);
+	r2->AreaSize();
+
+	return 0;
+};

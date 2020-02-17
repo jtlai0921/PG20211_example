@@ -1,0 +1,48 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim ca As ClassA = New ClassA(1, 2)
+        Console.WriteLine(ca.Calculate())
+
+        Dim d As Decorator = New Decorator(ca)
+        Console.WriteLine(d.Calculate())
+    End Sub
+
+End Module
+
+Interface Calculator
+    Function Calculate() As Integer
+End Interface
+
+Class ClassA
+    Implements Calculator
+
+    Public a As Integer
+    Public b As Integer
+
+    Public Sub New(ByVal a As Integer, ByVal b As Integer)
+        Me.a = a
+        Me.b = b
+
+    End Sub
+
+    Public Function Calculate() As Integer Implements Calculator.Calculate
+        Return (a + b)
+    End Function
+
+End Class
+
+Class Decorator
+    Implements Calculator
+    Dim ca As ClassA
+
+    Public Sub New(ByVal ca As ClassA)
+        Me.ca = ca
+    End Sub
+
+    Public Function Calculate() As Integer Implements Calculator.Calculate
+        Return (ca.a * ca.b)
+    End Function
+End Class

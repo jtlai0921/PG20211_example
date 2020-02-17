@@ -1,0 +1,51 @@
+
+
+import java.util.*;
+
+class MyMain{
+    public static void main(String[] args){
+		Subject s=new Subject();
+		ObserverA moa=new ObserverA();
+		ObserverB mob=new ObserverB();
+		s.AddObserver(moa);
+		s.AddObserver(mob);
+		s.aStateChanged(1); 		//値の変更
+		s.aStateChanged(2);
+		s.aStateChanged(3);
+    }
+}
+
+class Subject{
+    Vector observers=new Vector();
+    public int value;
+    public Subject(){
+		value=0;
+    }
+    void AddObserver(Observer observer){	//オブサーバーの登録
+		observers.add(observer);
+    }
+    void aStateChanged(int j){
+		value=j;
+		for(Iterator i=observers.iterator();i.hasNext();){
+	    		((Observer)i.next()).done(this);　//値変更の通知
+		}
+    }
+}
+
+interface Observer{
+    void done(Subject subject);　		//変更時に通知されるメソッド
+}
+
+class ObserverA implements Observer{
+    public void done(Subject subject){
+	System.out.println
+	("Observer A: received -  State Change(" + subject.value + ")");
+  }
+}
+
+class ObserverB implements Observer{
+    public void done(Subject subject){
+	System.out.println
+	("Observer B: received -  State Change(" + subject.value + ")");
+  }
+}

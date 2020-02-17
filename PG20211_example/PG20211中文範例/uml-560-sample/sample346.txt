@@ -1,0 +1,10 @@
+
+my $a=0;
+my $ret=eval {
+    die "division by zero" if($a==0);
+    my $b=10/$a;
+    print "10/$a=$b\n";
+};
+unless($ret){@# —áŠO‚Ì”­¶
+    print $@;
+}

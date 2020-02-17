@@ -1,0 +1,47 @@
+#include	<iostream>
+using namespace std;
+
+class B {
+private:
+	int x;
+
+public:
+	B() {
+		cout << "Object B" << endl;
+	}
+	void setX(int xx) {
+		x = xx;
+	}
+	int  getX() {
+		return x;
+	}
+};
+
+class A {
+private:
+	B* _b; // »E¦X
+public:
+	A(B* obj) {
+		setB(obj);
+	}
+
+	void setB(B* obj) {
+		_b = obj;
+	}
+
+
+	B? getB() {
+		return _b;
+	}
+};
+int main(void) {
+	B* _b = new B;
+	_b->setX(100);
+	A* _a = new A(_b);
+	A* another_a = new A(_b);
+
+	cout << _a->getB()->getX() << endl;
+	cout << another_a->getB()->getX() << endl;
+
+	return 0;
+};

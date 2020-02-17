@@ -1,0 +1,23 @@
+#include	<iostream>
+using namespace std;
+
+class _Rectangle {
+public:
+    //求出面積(正方形:引數為邊長)
+    _Rectangle(int h) {
+       cout << "Square Area Size = " << (h * h) << endl;
+    }
+
+    //求出面積(正方形:引數為長、寬)
+
+    _Rectangle(int h, int w) {
+           cout << "_Rectangle Area Size = "  << (h * w) << endl;
+    }
+};
+
+int main(void) {
+	_Rectangle* r1 = new _Rectangle(2);
+	_Rectangle* r2 = new _Rectangle(2, 1);
+
+	return 0;
+};

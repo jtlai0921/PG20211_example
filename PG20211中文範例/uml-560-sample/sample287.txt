@@ -1,0 +1,52 @@
+Public Class Form1
+    Inherits System.Windows.Forms.Form
+
+
+    Friend WithEvents Button1 As Button = New Button()
+    Public Sub New()
+        MyBase.New()
+
+        InitializeComponent()
+
+        Me.Button1.Location = New System.Drawing.Point(24, 16)
+        Me.Button1.Name = "Button1"
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "Hello"
+
+        Me.Controls.Add(Button1)
+        AddHandler Button1.Click, AddressOf Button1_Click
+
+    End Sub
+
+    Protected Overloads Overrides Sub Dispose _
+                       (ByVal disposing As Boolean)
+        If disposing Then
+            If Not (components Is Nothing) Then
+                components.Dispose()
+
+            End If
+
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
+
+    Private components As System.ComponentModel.IContainer
+
+    <System.Diagnostics.DebuggerStepThrough()> Private Sub _
+					 InitializeComponent()
+        '
+        'Form1
+        '
+        Me.AutoScaleBaseSize = New System.Drawing.Size(5, 12)
+        Me.ClientSize = New System.Drawing.Size(120, 78)
+        Me.Name = "Form1"
+        Me.Text = "Button Example"
+    End Sub
+
+#End Region
+
+    Private Sub Button1_Click(ByVal sender As System.Object, _
+                    ByVale As System.EventArgs)
+        Console.WriteLine("滑鼠的鈕被按下了。")
+    End Sub
+End Class

@@ -1,0 +1,26 @@
+
+
+public class Calculator2 {
+
+	public static void main(String[] args) {
+		Calculator2 c = new Calculator2();
+		int x, y;
+
+		x = 10;
+		y = 2;
+
+		System.out.println(c.Mult(x, y));
+		System.out.println(c.Div(x, y));
+	}
+
+    public int Mult(int a, int b) {
+        System.out.print(a + "*" + b + "=");
+        return a * b;
+    }
+
+    public int Div(int a, int b) {
+        System.out.print(a + "/" + b + "=");
+        return a / b;
+    }
+
+}

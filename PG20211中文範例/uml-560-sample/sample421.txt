@@ -1,0 +1,71 @@
+
+
+#include <iostream>
+using namespace std;
+
+class Strategy;
+
+class Strategy1;
+class Strategy2;
+
+class MyClass{
+  Strategy* strategy;
+public:
+  MyClass(Strategy* s){
+    strategy=s;
+  }
+  void Print();
+};
+
+class Strategy{@			//¨M©w½s¸¹¤èªkªºª«¥ó
+public:
+  virtual void CountUp()=0;
+};
+
+class Strategy1 : public Strategy{	//¥Î¼Æ¦r½s¸¹
+  int n;
+public:
+  Strategy1(){
+
+    n=1;
+  }
+  void CountUp(){
+    cout << n << ": ";
+    n++;
+  }
+};
+class Strategy2 : public Strategy{	//¥Î¤å¦r½s¸¹
+  char c;
+public:
+  Strategy2(){
+    c='a';
+  }
+  void CountUp(){
+    cout << c << ": ";
+    c++;
+  }
+};
+
+void MyClass::Print(){
+  strategy->CountUp();
+  cout << "Item 1" << endl;
+  strategy->CountUp();
+  cout << "Item 2" << endl;
+  strategy->CountUp();
+
+  cout << "Item 3" << endl;
+}
+
+int main(void)
+{
+  Strategy1 number;
+  Strategy2 alpha;
+  MyClass my1(&number);
+  MyClass my2(&alpha);
+
+  cout << "Strategy 1" << endl;
+  my1.Print();
+
+  cout << "Strategy 2" << endl;
+  my2.Print();
+}

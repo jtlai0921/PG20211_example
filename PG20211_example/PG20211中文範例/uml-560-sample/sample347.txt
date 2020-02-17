@@ -1,0 +1,25 @@
+
+my $a=0;
+my $ret=eval {
+    die DivideByZeroException->new if($a==0);
+    my $b=10/$a;
+    print "10/$a=$b\n";
+};
+unless($ret){
+    print $@->message;
+}
+
+
+package DivideByZeroException;
+use fields;
+
+sub new{
+    my $proto=shift;
+    $proto=ref($proto) || $proto;
+    my $self=fields::new($proto);
+    return $self;
+}
+
+sub message{
+    return "division by zero";
+}

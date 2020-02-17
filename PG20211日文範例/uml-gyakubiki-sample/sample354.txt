@@ -1,0 +1,44 @@
+
+my $a=A->new;
+$a->print;
+$a->show;
+$a->display;
+
+package A;
+use fields qw{delegate};
+sub new{
+    my $proto=shift;
+    $proto=ref($proto) || $proto;
+    my $self=fields::new($proto);
+    $self->{delegate}=Delegate->new();
+    return $self;
+}
+
+sub print{
+    print "A::print´n";
+}
+
+
+sub AUTOLOAD{
+
+    my $self=shift;
+    my ($method)=($AUTOLOAD=~/::(´w+)$/);
+    $self->{delegate}->$method(@_);
+}
+
+package Delegate;
+
+sub new{
+    my $proto=shift;
+    $proto=ref($proto) || $proto;
+    my $self=fields::new($proto);
+    return $self;
+}
+
+sub show{
+    print "Delegate::show´n";
+}
+
+sub display{
+    print "Delegate::display´n";
+}

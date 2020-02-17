@@ -1,0 +1,43 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim cca As ConcreteClassA = New ConcreteClassA()
+        Dim ccb As ConcreteClassB = New ConcreteClassB()
+
+        cca.templateMethod()
+        ccb.templateMethod()
+    End Sub
+
+End Module
+
+Public MustInherit Class TemplateClass
+    Public Sub templateMethod()
+        Operation1()
+
+        Operation2()
+    End Sub
+    Public MustOverride Sub Operation1()
+    Public MustOverride Sub Operation2()
+End Class
+
+Class ConcreteClassA
+    Inherits TemplateClass
+    Public Overrides Sub Operation1()
+        Console.WriteLine("ClassA Operation1")
+    End Sub
+    Public Overrides Sub Operation2()
+        Console.WriteLine("ClassA Operation2")
+    End Sub
+End Class
+
+Class ConcreteClassB
+    Inherits TemplateClass
+    Public Overrides Sub Operation1()
+        Console.WriteLine("ClassB Operation1")
+    End Sub
+    Public Overrides Sub Operation2()
+        Console.WriteLine("ClassB Operation2")
+    End Sub
+End Class

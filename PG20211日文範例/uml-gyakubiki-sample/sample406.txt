@@ -1,0 +1,29 @@
+
+
+#include <iostream>
+using namespace std;
+
+class Singleton{
+  static Singleton* object;
+protected:
+  Singleton(){　			　　//外部からは呼ばれないコンストラクタ
+  }
+public:
+  static Singleton* Instance(){
+    if(object==0){
+      object=new Singleton;
+
+    }
+    return object;
+  }
+};
+
+Singleton* Singleton::object=0;
+
+int main(void)
+{
+  Singleton* p1=Singleton::Instance();
+  Singleton* p2=Singleton::Instance();　//P1とP2は同じもの
+
+  printf("%p = %pｴn",p1,p2);
+}

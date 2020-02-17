@@ -1,0 +1,52 @@
+
+my $r1=Rectangle->new;
+$r1->Init(2,1);
+$r1->AreaSize();
+my $r2=Square->new;
+$r2->Init(2);
+$r2->AreaSize();
+
+
+package Rectangle;
+
+use fields qw(h w);
+
+sub new{
+    my $proto=shift;
+    $proto=ref($proto) || $proto;
+    my $self=fields::new($proto);
+    return $self;
+}
+
+sub Init{
+    my ($self,$hh,$ww)=@_;
+    $self->{h}=$hh;
+    $self->{w}=$ww;
+}
+
+sub AreaSize{
+    my ($self)=@_;
+    print "Rectangle Area Size ".$self->{h}*$self->{w}."´n";
+}
+
+
+package Square;
+use fields qw{delegate};
+
+sub new{
+    my $proto=shift;
+    $proto=ref($proto) || $proto;
+    my $self=fields::new($proto);
+    $self->{delegate}=Rectangle->new;
+    return $self;
+}
+
+sub Init{
+    my ($self,$hh)=@_;
+    $self->{delegate}->Init($hh,$hh);@# ˆÏ÷
+}
+
+sub AreaSize{
+    my ($self)=@_;
+    $self->{delegate}->AreaSize(); # ˆÏ÷
+}

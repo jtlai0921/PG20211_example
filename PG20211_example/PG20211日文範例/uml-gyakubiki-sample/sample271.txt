@@ -1,0 +1,22 @@
+Module Module1
+
+    Sub Main()
+
+        Dim r1 As Rectangle = New Rectangle(2)
+        Dim r2 As Rectangle = New Rectangle(2, 1)
+    End Sub
+
+End Module
+
+Class Rectangle
+    Protected h As Integer
+    Protected w As Integer
+
+    Public Sub New(ByVal h As Integer)
+  		Console.WriteLine("Square Area Size = "  + Format(h * h))
+    End Sub
+
+    Public Sub New(ByVal h As Integer, ByVal w As Integer)
+        Console.WriteLine("Rectangle Area Size = " + Format(h * w))
+    End Sub
+End Class

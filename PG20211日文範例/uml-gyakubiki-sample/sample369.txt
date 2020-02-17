@@ -1,0 +1,39 @@
+
+
+class MyMain{
+    public static void main(String[] args){
+		ClassA a1=new ClassA(0,30);
+		ClassA a2=new ClassA(30,70);
+		ClassA a3=new ClassA(70,100);
+		a1.setNext(a2);
+		a2.setNext(a3);
+
+		a1.process(20);
+		a1.process(50);
+		a1.process(90);
+    }
+}
+
+class ClassA{
+    ClassA next;
+    int low;
+    int high;
+    public ClassA(int l,int h){
+		low=l;
+		high=h;
+		next=null;
+    }
+    void setNext(ClassA n){
+		next=n;
+    }
+    void process(int val){
+
+		if(low<=val && val<high){
+	    	System.out.println
+		(low + " <= " + val + " < " + high);
+		}
+		else if(next!=null){　	//次のオブジェクトへたらい回し
+	    		next.process(val);
+		}
+    }
+}

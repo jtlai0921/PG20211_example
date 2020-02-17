@@ -1,0 +1,14 @@
+Module Module1
+
+    Sub Main()
+        Dim a As Integer = 0
+        Try
+
+            Dim b As Integer = 10 / a
+            Console.WriteLine(Format(10) + " / " +Format(a) + " = " + Format(b))
+        Catch e As ArithmeticException
+            Console.WriteLine("ó·äOÇ™î≠ê∂ÇµÇ‹ÇµÇΩ")
+        End Try
+    End Sub
+
+End Module

@@ -1,0 +1,68 @@
+
+
+class MyMain{
+    public static void main(String[] args){
+		Director director=new Director();
+
+		EquationBuilder equation=new EquationBuilder();
+		director.Create(equation);
+		System.out.println(equation.GetValue());
+
+		EnglishBuilder english=new EnglishBuilder();
+		director.Create(english);
+		System.out.println(english.GetValue());
+    }
+}
+	
+class Builder{　			　　//Builderの共通インターフェイス
+    public void AddNumber(String c){
+    }
+    public void AddPlusOperator(){
+    }
+    public void AddEqualOperator(){
+    }
+}
+
+class EquationBuilder extends Builder{　//等式をつくる
+    StringBuffer s=new StringBuffer();
+    public void AddNumber(String c){
+
+		
+		s.append(c);
+    }
+    public void AddPlusOperator(){
+		s.append("+");
+    }
+    public void AddEqualOperator(){
+		s.append("=");
+    }
+    String GetValue(){
+		return s.toString();
+    }
+}
+
+class EnglishBuilder extends Builder{　//英語で表示を作る
+    StringBuffer s=new StringBuffer();
+    public void AddNumber(String c){
+		s.append(c);
+		s.append(" ");
+    }
+    public void AddPlusOperator(){
+		s.append("plus ");
+    }
+    public void AddEqualOperator(){
+		s.append("is ");
+    }
+    String GetValue(){
+		return s.toString();
+    }
+}
+class Director{　			//Builderを操作して式を作る
+    public void Create(Builder builder){
+		builder.AddNumber("1");
+		builder.AddPlusOperator();
+		builder.AddNumber("1");
+		builder.AddEqualOperator();
+		builder.AddNumber("2");
+    }
+}

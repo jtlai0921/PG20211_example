@@ -1,0 +1,43 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim s1 As State = New State("State1")
+        Dim s2 As State = New State("State2")
+        Dim s3 As State = New State("State3")
+        Dim mc As My_Class = New My_Class(s1)
+        mc.Operation()
+        mc.setState(s2)
+        mc.Operation()
+        mc.setState(s3)
+        mc.Operation()
+    End Sub
+
+End Module
+
+Class My_Class
+    Dim currentState As State
+
+    Public Sub New(ByVal initialState As State)
+        currentState = initialState
+
+    End Sub
+
+    Public Sub setState(ByVal newState As State)
+        currentState = newState
+    End Sub
+
+    Public Sub Operation()
+        Console.WriteLine("Current state : " + currentState.state)
+    End Sub
+
+End Class
+
+Class State
+    Public state As String
+
+    Public Sub New(ByVal state As String)
+        Me.state = state
+    End Sub
+End Class

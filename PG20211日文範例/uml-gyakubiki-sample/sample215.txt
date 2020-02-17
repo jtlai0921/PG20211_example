@@ -1,0 +1,38 @@
+class MyMain {
+   public static void main(String args[]) {
+		B _b = new B();
+
+		_b.setX(100);
+		A _a = new A(_b);
+		A another_a = new A(_b);
+		System.out.println(_a.getB().getX());
+		System.out.println(another_a.getB().getX());
+   }
+}
+class A {
+	private B _b;     //集約のポイント
+	A(B obj) {
+		setB(obj);
+	}
+	void setB(B obj) {  //クラスＢのオブジェクトを引数として設定
+		_b = obj;
+	}
+	B getB() {
+		return _b;
+	}
+}
+
+class B {
+	private int x;
+	B() {
+		System.out.println("Object B");
+	}
+	
+	public  void setX(int x) {
+		this.x = x;
+	}
+
+	public  int  getX() {
+		return x;
+	}
+}	

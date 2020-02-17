@@ -1,0 +1,37 @@
+class MyMain {
+   public static void main(String args[]) {
+		A _a = new A();
+		_a.getB().setX(100);
+		System.out.println(_a.getB().getX());
+   }
+}
+class A {
+	private B _b;     // 合成的重點
+
+	A() {
+		setB();
+	}
+	private void setB() {
+		_b = new B();
+	}
+	B getB() {
+		return _b;
+	}
+}
+
+class B {
+	private int x;
+
+	B() {
+		System.out.println("Object B");
+	}
+
+	public  void setX(int x) {
+		this.x = x;
+	}
+
+
+	public  int  getX() {
+		return x;
+	}
+}

@@ -1,0 +1,60 @@
+
+
+class MyMain{
+    public static void main(String[] args){
+		ClassA ca=new ClassA();
+		ClassB cb=new ClassB();
+		Mediator m=new Mediator(ca,cb);
+
+		ca.Set(3);
+		ca.Print();
+		cb.Print();
+
+		cb.Set("42");
+		ca.Print();
+		cb.Print();
+    }
+}
+
+class ClassA{
+    int n;
+    Mediator m;
+    public void Set(int i){
+		n=i;
+		m.AChanged();
+    }
+    public void Print(){
+
+		System.out.println("ClassA: "+n);
+    }
+}
+
+class ClassB{
+    String s;
+    Mediator m;
+    public void Set(String c){
+		s=c;
+		m.BChanged();
+    }
+    void Print(){
+		System.out.println("ClassB: " + s);
+    }
+}
+
+class Mediator{ 		//ClassAとClassBの仲介をする
+
+    ClassA ca;
+    ClassB cb;
+    public Mediator(ClassA a,ClassB b){
+		ca=a;
+		ca.m=this;
+		cb=b;
+		cb.m=this;
+    }
+    void AChanged(){　	//Aの変更をBに反映
+		cb.s=Integer.toString(ca.n);
+    }
+    void BChanged(){　	//Bの変更をAに反映
+		ca.n=Integer.parseInt(cb.s);
+    }
+}

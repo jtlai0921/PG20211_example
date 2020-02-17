@@ -1,0 +1,41 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim s As String
+        Dim pg As PoolGreeting = New PoolGreeting()
+
+        Console.WriteLine(pg.getGreeting(2))
+        Console.WriteLine(pg.getGreeting("Morning"))
+
+    End Sub
+
+End Module
+
+Class PoolGreeting
+    Public s1 As String
+    Public s2 As String
+
+    Public Sub New()
+        s1 = "Good morinig"
+        s2 = "Hello"
+    End Sub
+
+    Public Function getGreeting(ByVal i As Integer) As String
+        If i = 1 Then
+            Return s1
+        Else
+            Return s2
+        End If
+    End Function
+
+    Public Function getGreeting(ByVal s As String) As String
+        If s = "Morning" Then
+            Return s1
+        Else
+            Return s2
+        End If
+    End Function
+
+End Class

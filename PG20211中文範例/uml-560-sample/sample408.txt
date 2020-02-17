@@ -1,0 +1,28 @@
+
+
+#include <iostream>
+using namespace std;
+class ImplementationClassA{@		//¹ê§@Ãş§O
+public:
+  const char* getImplementName(){
+    return "Implement-A";
+  }
+};
+
+class ClassA{@			//±q¥~³¡¬İªº¤¶­±
+  ImplementationClassA ica;
+public:
+  const char* getClassName(){
+    return "Class-A";
+  }
+  const char* getImplementName(){	//©I¥s¹ê§@Ãş§O
+    return ica.getImplementName();
+  }
+};
+
+int main(void)
+{
+  ClassA ca;
+    cout << ca.getClassName() << endl;
+  cout << ca.getImplementName() << endl;
+}

@@ -1,0 +1,66 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim i As Integer
+        Dim v As ArrayList = New ArrayList()
+
+        v.Add(New ElementA())
+        v.Add(New ElementA())
+        v.Add(New ElementB())
+        v.Add(New ElementB())
+
+        Dim _visitor As Visitor = New Visitor()
+
+        For i = 0 To v.Count - 1
+            Dim e As Element = v.Item(i)
+            e.SetVisitor(_visitor)
+            e.Operation()
+        Next
+
+    End Sub
+
+End Module
+
+Interface Element
+    Sub SetVisitor(ByVal _visitor As Visitor)
+    Sub Operation()
+End Interface
+
+Class ElementA
+    Implements Element
+
+    Dim _visitor As visitor
+
+    Public Sub SetVisitor(ByVal _visitor As Visitor) Implements Element.SetVisitor
+        _visitor.Operation(Me)
+    End Sub
+
+    Public Sub Operation() Implements Element.Operation
+        Console.WriteLine("Operation of A")
+    End Sub
+End Class
+
+Class ElementB
+    Implements Element
+    Dim _visitor As visitor
+
+    Public Sub SetVisitor(ByVal _visitor As Visitor) Implements Element.SetVisitor
+        _visitor.Operation(Me)
+    End Sub
+
+    Public Sub Operation() Implements Element.Operation
+        Console.WriteLine("Operation of B")
+    End Sub
+End Class
+
+Class Visitor
+    Public Sub Operation(ByVal element As ElementA)
+        Console.WriteLine("Do it for ElementA")
+    End Sub
+
+    Public Sub Operation(ByVal element As ElementB)
+        Console.WriteLine("Do it for ElementA")
+    End Sub
+End Class

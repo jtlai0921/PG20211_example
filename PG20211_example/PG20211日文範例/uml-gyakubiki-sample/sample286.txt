@@ -1,0 +1,14 @@
+Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+	Dim i As Integer
+	Dim a(1)
+	ReDim a(2)
+	a(0) = 0
+	a(1) = 1
+	a(2) = 2
+
+	For i = 0 To 2
+		Trace.WriteLine(a(i))
+	Next
+
+End Sub 

@@ -1,0 +1,40 @@
+Module Module1
+
+    Sub Main()
+        Dim r1 As Rectangle = New Rectangle()
+        r1.Init(2, 1)
+        r1.AreaSize()
+        Dim r2 As Square = New Square()
+        r2.Init(2)
+        r2.AreaSize()
+    End Sub
+
+End Module
+Class Rectangle
+    Protected h As Integer
+    Protected w As Integer
+   Å@Public Sub Init(ByVal h As Integer, ByVal w As Integer)
+        Me.h = h
+        Me.w = w
+    End Sub
+
+    Public Sub AreaSize()
+        Console.WriteLine("Rectangle Area Size = " +Format(h * w))
+    End Sub
+End Class
+
+Class Square
+    Protected h As Integer
+    Private _delegate As Rectangle
+    Public Sub Init(ByVal h As Integer)
+
+        Me.h = h
+    End Sub
+    Public Sub New()
+        _delegate = New Rectangle()
+    End Sub
+    Public Sub AreaSize()
+        _delegate.Init(h, h)
+        _delegate.AreaSize()
+    End Sub
+End Class

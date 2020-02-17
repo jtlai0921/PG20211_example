@@ -1,0 +1,23 @@
+#include <iostream>
+#include <stdexcept>				//例外クラスのインクルード
+using namespace std;
+
+
+int main (void)
+{
+	int a = 0;
+	try
+	{
+		if (a == 0) {
+			throw exception(); 	//例外の発生
+		}
+		int b = 10/a;
+		cout << 10 << " / " << a << " = "  << b << endl;
+	}
+	catch (const exception& e)
+	{
+		cout << e.what() << endl;
+	}
+
+	return 0;
+};

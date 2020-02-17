@@ -1,0 +1,36 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim aAdaptee As Adaptee = New Adaptee(2)
+        Dim aAdapter As Adapter = New Adapter(aAdaptee)
+        Console.WriteLine(aAdapter.GetData)
+    End Sub
+
+End Module
+
+Class Adaptee
+    Public number As Integer
+
+    Public Sub New(ByVal a As Integer)
+        SetData(a)
+    End Sub
+
+    Public Sub Setdata(ByVal a As Integer)
+        number = a
+    End Sub
+End Class
+
+Class Adapter
+    Dim aAdaptee As Adaptee
+
+    Public Sub New(ByVal aAdaptee As Adaptee)
+        Me.aAdaptee = aAdaptee
+    End Sub
+
+    Public Function GetData() As Integer
+        Return aAdaptee.number
+    End Function
+
+End Class

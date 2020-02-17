@@ -1,0 +1,27 @@
+
+my $c=Calculator->new;
+$c->add(2,3);
+$c->multiply(2,3);
+
+package Addition;
+sub add{
+    my ($self,$a,$b)=@_;
+    print "$a + $b = ".($a+$b)."\n";
+}
+
+package Multiplication;
+sub multiply{
+    my ($self,$a,$b)=@_;
+    print "$a * $b = ".($a*$b)."\n";
+}
+
+package Calculator;
+use fields;
+use base qw(Addition Multiplication);
+
+sub new{
+    my $proto=shift;
+    $proto=ref($proto) || $proto;
+    my $self=fields::new($proto);
+    return $self;
+}

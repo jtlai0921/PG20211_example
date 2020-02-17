@@ -1,0 +1,28 @@
+Module Module1
+
+    Sub Main()
+        Dim c As Calculator = New Calculator()
+
+        Try
+            Console.WriteLine(c.division(10, 0))
+        Catch e As MyException
+            Console.WriteLine("例外發生了:MyException")
+        End Try
+    End Sub
+
+End Module
+
+Class MyException
+    Inherits Exception
+End Class
+
+Class Calculator
+    Public Function division(ByVal a As Integer, ByVal b As Integer) As Integer
+        If b = 0 Then
+            Throw New MyException()
+        Else
+            Console.Write(Format(a) + " / "  + Format(b) + " = ")
+            Return a / b
+        End If
+    End Function
+End Class

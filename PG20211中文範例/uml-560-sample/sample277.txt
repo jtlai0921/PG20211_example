@@ -1,0 +1,53 @@
+Imports System.IO
+Imports System.Runtime.Serialization
+Imports System.Runtime.Serialization.Formatters.Binary
+
+Module Module1
+
+    Sub Main()
+        Dim p1 As New Person(10, "hoge")
+
+        Dim formatter As New BinaryFormatter()
+      	  Dim outputStream As New FileStream Å@								("test.dat",FileMode.Create)
+        Try
+
+            formatter.Serialize(outputStream, p1)
+        Finally
+
+
+            outputStream.Close()
+        End Try
+
+        Dim p2 As Person
+        Dim inputStream As New FileStream("test.dat",FileMode.Open)
+        Try
+            p2 = CType(formatter.Deserialize  (inputStream), Person)
+        Finally
+            inputStream.Close()
+        End Try
+
+        Console.WriteLine(p2.getAge())
+        Console.WriteLine(p2.getName())
+    End Sub
+
+
+    <Serializable()> Private Class Person
+        Dim Age As Integer
+        Dim Name As String
+
+        Public Sub New(ByVal Age As Integer,ByVal Name As String)
+            Me.Age = Age
+            Me.Name = Name
+        End Sub
+
+        Public Function getAge() As Integer
+            Return Age
+        End Function
+
+        Public Function getName() As String
+            Return Name
+        End Function
+
+    End Class
+
+End Module

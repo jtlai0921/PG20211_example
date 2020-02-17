@@ -1,0 +1,62 @@
+
+
+#include <iostream>
+using namespace std;
+
+class Node{
+
+ public:
+  virtual void Print()=0;
+};
+
+class Cons : public Node{　		//ツリーオブジェクト
+  Node* child1;
+  Node* child2;
+ public:
+  Cons(Node* c1,Node* c2){
+    child1=c1;
+    child2=c2;
+  }
+  void Print(){
+    cout << "( ";
+    child1->Print();
+    cout << " ";
+    child2->Print();
+    cout << ") ";
+  }
+};
+
+class Leaf : public Node{　		//ツリーの葉にあたるオブジェクト
+  string name;
+public:
+
+  Leaf(const char* s){
+    name=s;
+  }
+  void Print(){
+    cout << name;
+  }
+};
+
+int main(void)
+{
+  Leaf leaf1("Leaf1");　		//葉の定義
+  Leaf leaf2("Leaf2");
+  Leaf leaf3("Leaf3");
+  Leaf leaf4("Leaf4");
+  Cons cons1(&leaf1,&leaf2);　	//ツリーの作成
+  Cons cons2(&leaf3,&leaf4);
+  Cons cons3(&cons1,&cons2);
+
+  cout << "Leaf1 = ";
+  leaf1.Print();
+  cout << endl;
+
+  cout << "Cons1 = ";
+  cons1.Print();
+  cout << endl;
+
+  cout << "Cons3 = ";
+  cons3.Print();
+  cout << endl;
+}

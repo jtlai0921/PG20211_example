@@ -1,0 +1,32 @@
+#include	<iostream>
+using namespace std;
+
+class Area {
+public:
+	virtual void AreaSize() = 0;
+};
+
+class _Rectangle :public Area { 	//インターフェイスの実装
+private:
+	int h;
+	int w;
+
+public:
+	void Init(int hh, int ww) {
+		h = hh;
+		w = ww;
+	}
+	void AreaSize() {
+		cout <<"Square Area Size=" << (h ＊ w) << endl;
+	}
+};
+
+int main(void)
+{
+	_Rectangle＊ r = new _Rectangle;
+
+	r -> Init(2,1);
+	r -> AreaSize();
+
+	return 0;
+}

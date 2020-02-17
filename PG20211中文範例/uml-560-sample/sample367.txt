@@ -1,0 +1,47 @@
+
+
+class MyMain{
+    public static void main(String[] args){
+		AlphabetFactory f=new AlphabetFactory();
+		Alphabet str1[]=
+		{f.Get('H'),f.Get('e'),f.Get('l'),f.Get('l'),f.Get('o')};
+		Alphabet str2[]=
+		{f.Get('W'),f.Get('o'),f.Get('r'),f.Get('l'),f.Get('d')};
+		PrintAlphabetArray(str1);
+		PrintAlphabetArray(str2);
+    }
+
+    static void PrintAlphabetArray(Alphabet[] str){
+		for(int i=0;i<str.length;i++){
+	    str[i].Print();
+		}
+		System.out.println("");
+    }
+}
+
+class Alphabet{@				//¤å¦rª«¥ó
+    char ch;
+    public Alphabet(char value){
+		ch=value;
+		System.out.println("Character `"+value+"' is created.");
+    	}
+    	void Print(){
+		System.out.print(ch);
+    }
+}
+
+class AlphabetFactory{
+    Alphabet[] table=new Alphabet[256];@//¤å¦rª«¥óªºpool
+    public AlphabetFactory(){
+		for(int i=0;i<256;i++){
+	    		table[i]=null;
+		}
+    }
+    Alphabet Get(char ch){
+		if(table[ch]==null){
+	    		table[ch]=new Alphabet(ch);
+		}
+	return table[ch];
+
+    }
+}

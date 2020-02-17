@@ -1,0 +1,58 @@
+
+
+#include <iostream>
+using namespace std;
+
+class Expression{@				//©â¶Hªº¦¡¤lª«¥ó
+public:
+  virtual int Interpret()=0;
+};
+
+class Number : public Expression{		//¼Æ­È
+  char* value;
+public:
+  Number(char* s){
+    value=s;
+  }
+  int Interpret(){
+    return atoi(value);
+  }
+};
+
+class PlusOperator : public Expression{@	//¥[ªk
+  Expression* exp1;
+  Expression* exp2;
+public:
+  PlusOperator(Expression& e1,Expression& e2){
+    exp1=&e1;
+    exp2=&e2;
+  }
+  int Interpret(){
+    return exp1->Interpret()+exp2->Interpret();
+  }
+};
+
+class MinusOperator : public Expression{@	//´îªk
+  Expression* exp1;
+  Expression* exp2;
+public:
+  MinusOperator(Expression& e1,Expression& e2){
+    exp1=&e1;
+    exp2=&e2;
+  }
+  int Interpret(){
+    return exp1->Interpret()-exp2->Interpret();
+  }
+};
+
+int main(void)
+{
+  char* Context="12+3-4";
+  Number Literal1("4");
+  Number Literal2("12");
+  Number Literal3("3");
+  PlusOperator PlusOp(Literal2,Literal3);
+  MinusOperator FinalOp(PlusOp,Literal1);
+
+  cout << Context << "=" << FinalOp.Interpret() << endl;
+}

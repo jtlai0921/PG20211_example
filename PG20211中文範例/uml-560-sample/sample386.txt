@@ -1,0 +1,64 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim root As Composite = New Composite("root")
+
+        Dim compositeA As Composite = New Composite("CompositeA")
+        root.addNode(compositeA)
+        Dim compositeB As Composite = New Composite("CompositeB")
+        root.addNode(compositeB)
+        Dim compositeC As Composite = New Composite("CompositeC")
+        root.addNode(compositeC)
+        Dim leafA As Leaf = New Leaf("leafA")
+        root.addNode(leafA)
+
+        root.Operation()
+    End Sub
+
+End Module
+
+Class Node
+    Dim name As String
+    Dim child As Node
+
+    Protected Sub New(ByVal name As String)
+        Me.name = name
+    End Sub
+
+    Protected Friend Overridable Sub addNode(ByVal node As Node)
+        If IsNothing(child) = False Then
+            child.addNode(node)
+        Else
+
+
+            child = node
+        End If
+    End Sub
+
+    Sub Operation()
+        Console.WriteLine(name)
+        If IsNothing(child) = False Then
+            child.Operation()
+        End If
+    End Sub
+
+End Class
+
+Class Composite
+    Inherits Node
+    Public Sub New(ByVal name As String)
+        MyBase.New(name)
+    End Sub
+End Class
+
+Class Leaf
+    Inherits Node
+    Public Sub New(ByVal name As String)
+        MyBase.New(name)
+    End Sub
+
+    Protected Friend Overrides Sub addNode(ByVal name As Node)
+    End Sub
+End Class

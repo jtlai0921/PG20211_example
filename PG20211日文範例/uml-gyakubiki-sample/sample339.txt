@@ -1,0 +1,22 @@
+package Superclass;
+
+sub new{
+    my $proto=shift;
+    $proto=ref($proto) || $proto;
+    my $self=fields::new($proto);
+    .
+    .
+    .
+    return $self;
+}
+
+package Subclass;
+
+sub new{
+    my $proto=shift;
+    my $self=Superclass::new($proto);
+    .
+    .
+    .
+    return $self;
+}

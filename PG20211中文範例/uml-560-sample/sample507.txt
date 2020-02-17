@@ -1,0 +1,4 @@
+<Test()> Public Sub TestAdd()
+    Dim c As Calculator = New Calculator()
+    Assertion.AssertEquals(c.Addition(1, 1), 2)
+End Sub

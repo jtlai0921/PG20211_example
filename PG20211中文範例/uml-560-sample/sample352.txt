@@ -1,0 +1,19 @@
+
+while(<>){
+    chomp;
+    print "$_(6,2) = ".&{$_}(6,2)."\n";
+}
+
+sub add{
+    return $_[0]+$_[1];
+}
+sub sub{
+    return $_[0]-$_[1];
+}
+sub mul{
+    return $_[0]*$_[1];
+}
+
+sub div{
+    return $_[0]/$_[1];
+}

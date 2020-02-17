@@ -1,0 +1,30 @@
+
+class MyMain {
+   public static void main(String args[]) {
+		Rectangle r = new Rectangle();
+		r.Init(2, 1);
+		r.AreaSize();
+		Square  s = new Square();
+		s.Init(2, 1);
+		s.AreaSize();
+   }
+}
+class Rectangle {			// 矩形類別
+    private int h;
+    private int w;
+
+	public void Init(int h, int w) {
+		this.h = h;
+		this.w = w;
+	}
+
+    public void AreaSize() {
+        System.out.println("Rectangle Area Size = " + (h * w));
+    }
+}
+
+class Square extends Rectangle {	// 正方形類別
+    public void AreaSize() { 	// 對方法做覆寫
+        System.out.println("Square Area Size= " + (h * h));
+    }
+}

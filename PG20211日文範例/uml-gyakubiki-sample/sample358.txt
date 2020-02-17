@@ -1,0 +1,64 @@
+
+
+class MyMain{
+    static public void main(String args[]){
+		ConcreteFoods foods=new ConcreteFoods();
+
+		Fruit aFruit=foods.CreateFruit();
+		Vegetable aVegetable=foods.CreateVegetable();
+
+		aFruit.PrintName();
+		aVegetable.PrintName();
+    }
+}
+
+//インターフェイスの定義
+interface Food{
+    void PrintName();
+}
+
+interface Fruit extends Food{
+}
+
+interface Vegetable extends Food{
+}
+
+//実際のクラスの定義
+class Apple implements Fruit{
+    public void PrintName(){
+		System.out.println("Apple");
+    }
+
+}
+
+class Tomato implements Vegetable{
+    public void PrintName(){
+		System.out.println("Tomato");
+    }
+}
+
+class Banana implements Fruit{
+    public void PrintName(){
+		System.out.println("Banana");
+    }
+}
+class Carrot implements Vegetable{
+    public void PrintName(){
+		System.out.println("Carrot");
+    }
+}
+
+//AbstracFactoryの定義
+interface Foods{
+    public Fruit CreateFruit();
+    public Vegetable CreateVegetable();
+};
+
+class ConcreteFoods implements Foods{
+    public Fruit CreateFruit(){
+		return new Apple();
+    }
+    public Vegetable CreateVegetable(){
+		return new Tomato();
+    }
+}

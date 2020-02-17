@@ -1,0 +1,64 @@
+
+
+#include <iostream>
+using namespace std;
+
+class Iterator;
+
+class LinkedList{
+  int value;
+  LinkedList* next;
+  friend class Iterator;
+
+
+public:
+  LinkedList(int val,LinkedList* n){
+    value=val;
+    next=n;
+  }
+  int GetValue(){
+    return value;
+  }
+  Iterator* CreateIterator();
+};
+
+class Iterator{@		@//±½¹LLinked listªºIteratorÃþ§O
+
+  LinkedList* start;
+  LinkedList* current;
+public:
+  Iterator(LinkedList* c){
+    start=c;
+    current=0;
+  }
+  LinkedList* GetCurrent(){@@//¶Ç¦^²{¦bªº­È
+    return current;
+  }
+  int MoveNext(){@		@//²¾¦Ü¤U¤@­Ó
+    if(current==0){
+      current=start;
+    }
+    else{
+
+      current=current->next;
+    }
+    return current!=0;
+  }
+};
+
+Iterator* LinkedList::CreateIterator()
+{
+    return new Iterator(this);
+}
+
+int main(void)
+{
+  LinkedList l1(3,0);
+  LinkedList l2(2,&l1);
+  LinkedList l3(1,&l2);
+
+  Iterator* i=l3.CreateIterator();
+  while(i->MoveNext()){
+    cout << i->GetCurrent()->GetValue() << endl;
+  }
+}

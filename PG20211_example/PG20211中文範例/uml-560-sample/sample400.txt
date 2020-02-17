@@ -1,0 +1,25 @@
+
+
+#include <iostream>
+using namespace std;
+
+class ConcreteProductA{
+public:
+  ConcreteProductA(){
+    cout << "ConcreteProductA" << endl;
+  }
+};
+
+class CreatorA{@			//Factoryª«¥ó
+public:
+  ConcreteProductA* FactoryMethod(){
+    return new ConcreteProductA;
+  }
+};
+int main(void)
+{
+  CreatorA aCreatorA;
+  ConcreteProductA* aProductA=aCreatorA.FactoryMethod();
+
+   delete aProductA;
+}

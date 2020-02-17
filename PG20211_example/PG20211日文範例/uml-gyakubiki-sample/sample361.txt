@@ -1,0 +1,24 @@
+
+
+class MyMain
+{
+    public static void main(String[] args){
+		Singleton p1=Singleton.Instance();
+		Singleton p2=Singleton.Instance();
+	
+		System.out.println(p1+" = "+p2);
+    }
+}
+
+class Singleton{
+    static Singleton object=null;
+    protected Singleton(){　	//ユーザは呼び出せないコンストラクタ
+    }
+    public static Singleton Instance(){
+		if(object==null){
+
+	    object=new Singleton();
+		}
+	return object;
+    }
+}

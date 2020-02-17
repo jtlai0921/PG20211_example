@@ -1,0 +1,18 @@
+
+class MyMain {
+	public static void main(String[] args) {
+		MyClass mc1 = new MyClass();
+		MyClass mc2 = new MyClass();
+		mc1.setA( 100 );
+		System.out.println( "a(by object method): "
+						 + mc2.getA() );
+		MyClass.showA();
+	}
+}
+class MyClass {
+	static int a;
+	static void showA( ) { 								System.out.println( "a(by class method): " + a );
+	}
+	void setA(int n) { a = n; }
+	int getA() { return a; }
+}

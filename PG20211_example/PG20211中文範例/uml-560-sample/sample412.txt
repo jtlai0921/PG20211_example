@@ -1,0 +1,50 @@
+
+
+#include <iostream>
+using namespace std;
+
+class Alphabet{@			//¤å¦rª«¥ó
+  unsigned char ch;
+public:
+  Alphabet(unsigned char value){
+    ch=value;
+    cout << "Character " << value << " is created." << endl;
+
+  }
+
+  void Print(){
+    cout << ch;
+  }
+};
+class AlphabetFactory{
+  Alphabet* table[256];@		//¤å¦rªºPool
+public:
+  AlphabetFactory(){
+    for(int i=0;i<256;i++){
+      table[i]=0;
+    }
+  }
+  Alphabet* Get(unsigned char ch){
+    if(table[ch]==0){@		//·í¤å¦r¨Ó³Q»s§@®É·s»s¤@­Ó
+      table[ch]=new Alphabet(ch);
+    }
+    return table[ch];
+  }
+};
+
+void PrintAlphabetArray(Alphabet** str){
+  for(Alphabet** p=str;*p!=0;p++){
+    (*p)->Print();
+  }
+  cout << endl;
+}
+
+int main(void){
+  AlphabetFactory f;
+  Alphabet* str1[]=
+	{f.Get('H'),f.Get('e'),f.Get('l'),@f.Get('l'),f.Get('o'),0};
+  Alphabet* str2[]=
+	{f.Get('W'),f.Get('o'),f.Get('r'),f.Get('l'),f.Get('d'),0};
+  PrintAlphabetArray(str1);
+  PrintAlphabetArray(str2);
+}

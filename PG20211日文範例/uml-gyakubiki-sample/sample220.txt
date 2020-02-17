@@ -1,0 +1,19 @@
+class MyMain {
+   public static void main(String args[]) {
+		Rectangle r1 = new Rectangle(2);
+		Rectangle r2 = new Rectangle(2, 1);
+   }
+}
+
+class Rectangle {
+
+    // 面積を求める（正方形：引数は縦）
+    Rectangle(int h) { //コンストラクターのオーバーロード
+        System.out.println("Square Area Size = "+ (h * h));
+    }
+
+    // 面積を求める（長方形：引数は縦、横）
+    Rectangle(int h, int w) { //コンストラクターのオーバーロード
+           System.out.println("Rectangle Area Size = "+ (h * w));
+    }
+}

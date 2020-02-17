@@ -1,0 +1,33 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim theSingleton As Singleton = Singleton.Instance()
+        theSingleton.Print_i()
+        Dim anotherSingleton As Singleton = Singleton.Instance()
+        anotherSingleton.Print_i()
+    End Sub
+
+End Module
+
+Class Singleton
+    Shared i As Integer = 0
+    Private Shared _object As Singleton
+
+    Private Sub New()
+        i = i + 1
+    End Sub
+
+    Public Sub Print_i()
+        Console.WriteLine(i)
+    End Sub
+
+    Public Shared Function Instance() As Singleton
+        If IsNothing(_object) = True Then
+            _object = New Singleton()
+        End If
+        Return _object
+
+    End Function
+End Class

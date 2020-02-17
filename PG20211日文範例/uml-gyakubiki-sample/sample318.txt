@@ -1,0 +1,18 @@
+#include <list>			　　　//listクラスのインクルード
+#include <iostream>
+using namespace std;
+
+int main(void)
+{
+	list<int> List;			　　　//listクラスオブジェクトを定義
+	list<int>::iterator Ite;	　　　//イテレータの定義
+	int i;
+
+	for(i = 1; i <= 100; i++) {　　　//100件のデータを登録
+		List.push_back(i);
+	}
+	//イテレータにlistクラスオブジェクトを登録し、登録データの最後までループする
+	for(Ite = List.begin();Ite != List.end();Ite++) {
+		//登録データを表示する。
+		cout << "Num = " << ＊Ite << "\n";
+	}

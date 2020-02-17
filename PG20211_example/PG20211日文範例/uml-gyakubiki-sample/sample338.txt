@@ -1,0 +1,38 @@
+my $r=Rectangle->new;
+$r->Init(2,1);
+$r->AreaSize();
+
+my $s=Square->new;
+$s->Init(2);
+$s->AreaSize();
+
+package Rectangle;
+use fields qw(h w);
+
+sub new{
+    my $proto=shift;
+    $proto=ref($proto) || $proto;
+    my $self=fields::new($proto);
+    return $self;
+}
+
+sub Init{
+    my ($self,$hh,$ww)=@_;
+    $self->{h}=$hh;
+    $self->{w}=$ww;
+}
+
+sub AreaSize{
+    my $self=shift;
+    print "Rectangle Area Size = "
+      .$self->{h}*$self->{w}."´n";
+}
+
+package Square;
+use base qw(Rectangle);
+
+sub Init{
+    my ($self,$hh)=@_;
+    $self->{h}=$hh;
+    $self->{w}=$hh;
+}

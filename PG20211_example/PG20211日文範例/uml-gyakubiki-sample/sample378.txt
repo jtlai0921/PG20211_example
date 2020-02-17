@@ -1,0 +1,51 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim Context As String = "12+3-4"
+
+        Dim Literal1 As Number = New Number("4")
+        Dim Literal2 As Number = New Number("12")
+        Dim Literal3 As Number = New Number("3")
+
+        Dim PlusOp As PlusOperator = New  PlusOperator(Literal2, Literal3)
+        Dim FinalOp As MinusOperator = New  MinusOperator(PlusOp, Literal1)
+
+        Console.WriteLine(Context + "=" + Format(FinalOp.Interpret))
+    End Sub
+
+End Module
+
+MustInherit Class Expression
+    Public result As Integer
+    Public Function Interpret() as Integer
+        Return result
+    End Function
+End Class
+
+Class Number
+    Inherits Expression
+
+    Public Sub New(ByVal literal As String)
+        result = Val(literal)
+    End Sub
+
+End Class
+
+Class PlusOperator
+    Inherits Expression
+
+    Public Sub New(ByVal exp1 As Expression, ByVal exp2 As Expression)
+        result = exp1.result + exp2.result
+
+    End Sub
+End Class
+
+Class MinusOperator
+    Inherits Expression
+
+    Public Sub New(ByVal exp1 As Expression, ByVal exp2 As Expression)
+        result = exp1.result - exp2.result
+    End Sub
+End Class

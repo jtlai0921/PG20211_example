@@ -1,0 +1,25 @@
+public class MyMain {
+    public static void main(String[] args) {
+		Calculator c = new Calculator();
+		c.add(2, 3);
+		c.multiply(2, 3);
+	}a
+}
+interface addition {
+	void add(int a, int b);
+}
+
+interface multiplication {
+	void multiply(int a, int b);
+}
+
+class Calculator implements addition, multiplication {
+//繼續addition和mulitiplication(多重繼承)
+
+	public void add(int a, int b) {
+		System.out.println(a + " + " + b + " = " + (a + b));
+	}
+	public void multiply(int a, int b) {
+		System.out.println(a + " * " + b + " = " + (a * b));
+	}
+}

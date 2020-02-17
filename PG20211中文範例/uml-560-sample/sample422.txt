@@ -1,0 +1,63 @@
+
+
+#include <iostream>
+using namespace std;
+class Visitor;
+class VisitorPrint;
+class ElementA;
+class ElementB;
+
+class Element{
+public:
+  virtual void Accept(Visitor* v)=0;
+};
+
+class Visitor{@				//ªí¥Ü¬YºØ³B²zªºª«¥ó
+public:
+  virtual void VisitA(ElementA* e)=0;@	//ElementAªº³B²z
+  virtual void VisitB(ElementB* e)=0;@	//ElementBªº³B²z
+};
+
+class ElementA : public Element{
+  int n;
+
+  friend class VisitorPrint;
+public:
+  ElementA(int i){
+    n=i;
+  }
+  void Accept(Visitor* v){
+    v->VisitA(this);
+  }
+};
+class ElementB : public Element{
+  string msg;
+  friend class VisitorPrint;
+public:
+  ElementB(const char* s){
+    msg=s;
+  }
+  void Accept(Visitor* v){
+    v->VisitB(this);
+  }
+};
+
+class VisitorPrint : public Visitor{	//³B²zªº¨Ò¤l(¦C¦L)
+public:
+  void VisitA(ElementA* e){
+    cout << e->n << " ";
+  }
+  void VisitB(ElementB* e){
+    cout << e->msg << " ";
+  }
+};
+
+int main(void)
+{
+  Element* elements[3]={new ElementB("Hello"),new ElementA(42), new ElementB("peoples")};
+  VisitorPrint visit;
+  for(int i=0;i<3;i++){
+    elements[i]->Accept(&visit);
+  }
+  cout << endl;
+}

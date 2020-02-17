@@ -1,0 +1,37 @@
+
+
+class MyMain{
+    public static void main(String[] args)
+    {
+		Prototype aPrototypeA=new Prototype();
+		aPrototypeA.SetField1(3);
+		aPrototypeA.SetField2(4);
+		aPrototypeA.Print();
+
+		Prototype aPrototypeB=aPrototypeA.Clone();
+		aPrototypeB.SetField2(5);
+		aPrototypeB.Print();
+    }
+}
+
+class Prototype{
+    int field1;
+    int field2;
+    public Prototype Clone(){Å@	// Ω∆ªs§∫Æe
+		Prototype ret=new Prototype();
+		ret.field1=field1;
+		ret.field2=field2;
+		return ret;
+    }
+    public void SetField1(int i){
+		field1=i;
+    }
+
+    public void SetField2(int i){
+		field2=i;
+    }
+    public void Print(){
+		System.out.print("Field1 = " + field1);
+		System.out.println(" Field2 = " + field2);
+    }
+};

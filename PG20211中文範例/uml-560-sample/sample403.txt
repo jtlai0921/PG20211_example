@@ -1,0 +1,75 @@
+
+
+#include <iostream>
+using namespace std;
+
+class Food{
+public:
+  virtual void PrintName()=0;
+};
+
+class Fruit : public Food{@	//¤ôªGªº©w¸q
+};
+
+class Vegetable : public Food{@	//½­µæªº©w¸q
+};
+
+
+class Apple : public Fruit{
+public:
+  void PrintName(){
+    cout << "Apple" << endl;
+  }
+};
+
+class Tomato : public Vegetable{
+public:
+  void PrintName(){
+    cout << "Tomato" << endl;
+  }
+};
+
+class Banana : public Fruit{
+public:
+  void PrintName(){
+    cout << "Banana" << endl;
+  }
+};
+
+class Carrot : public Vegetable{
+public:
+  void PrintName(){
+
+    cout << "Carrot" << endl;
+  }
+};
+
+
+class Foods{@				//¶Ç¦^¤ôªG©M½­µæªº¤¶­±
+public:
+  virtual Fruit* CreateFruit()=0;
+  virtual Vegetable* CreateVegetable()=0;
+};
+
+class ConcreteFoods{
+public:
+  Fruit* CreateFruit(){@		//¶Ç¦^Apple³o­Ó¤ôªG
+    return new Apple();
+  }
+  Vegetable* CreateVegetable(){@	//¶Ç¦^Tomato³o­Ó½­µæ
+    return new Tomato();
+  }
+};
+
+int main(void)
+{
+  ConcreteFoods foods;
+  Fruit* aFruit=foods.CreateFruit();
+  Vegetable* aVegetable=foods.CreateVegetable();
+
+  aFruit->PrintName();
+  aVegetable->PrintName();
+
+  delete aFruit;
+  delete aVegetable;
+}

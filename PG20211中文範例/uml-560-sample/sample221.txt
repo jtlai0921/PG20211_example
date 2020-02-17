@@ -1,0 +1,40 @@
+class MyMain {
+   public static void main(String args[]) {
+		Rectangle r1 = new Rectangle();
+		r1.Init(2, 1);
+		r1.AreaSize();
+		Square r2 = new Square();
+		r2.Init(2);
+		r2.AreaSize();
+   }
+}
+
+class Rectangle {
+   	private int h;
+   	private int w;
+
+	public void Init(int h, int w) {
+		this.h = h;
+		this.w = w;
+	}
+   	public void AreaSize() {
+        System.out.println("Rectangle Area Size="+ (h * w));
+	}
+}
+
+class	Square {
+   	private	int h;
+
+	private	Rectangle delegate;
+
+	public	void Init(int h) {
+		this.h = h;
+	}
+  	public	Square() {
+       	delegate = new Rectangle() ;
+   	}
+   	public	void AreaSize() { //將處理委託給Rectangle類別
+		delegate.Init(h, h);
+       	delegate.AreaSize();
+   	}
+}

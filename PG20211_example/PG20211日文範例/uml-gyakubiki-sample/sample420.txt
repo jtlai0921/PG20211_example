@@ -1,0 +1,83 @@
+
+
+#include <iostream>
+using namespace std;
+
+class State;
+class State1;
+class State2;
+class State3;
+
+class MyClass{
+  State* current;
+public:
+  MyClass();
+  void ChangeState(State* next);　	//状態遷移
+  void Operation();　		//ある状態におけるふるまい
+};
+
+class State{　				//状態オブジェクト
+protected:
+  MyClass* my;
+public:
+  State(MyClass* m){
+    my=m;
+  }
+  virtual void Operation()=0;
+};
+
+class State1 : public State{
+public:
+  State1(MyClass* m) : State(m){}
+  void Operation();
+};
+
+class State2 : public State{
+public:
+  State2(MyClass* m) : State(m){}
+  void Operation();
+};
+
+class State3 : public State{
+
+public:
+  State3(MyClass* m) : State(m){}
+  void Operation();
+};
+
+MyClass::MyClass(){
+  ChangeState(new State1(this));
+}
+void MyClass::Operation(){
+  current->Operation();
+
+}
+void MyClass::ChangeState(State* next){
+  if(current!=0){
+    delete current;
+  }
+  current=next;
+}
+void State1::Operation(){
+    cout << "State1 operation" << endl;
+    my->ChangeState(new State2(my));
+}
+void State2::Operation(){
+    cout << "State2 operation" << endl;
+    my->ChangeState(new State3(my));
+}
+
+void State3::Operation(){
+    cout << "State3 operation" << endl;
+    my->ChangeState(new State1(my));
+}
+
+int main(void)
+{
+  MyClass my;
+
+  my.Operation();
+  my.Operation();
+  my.Operation();
+  my.Operation();
+}

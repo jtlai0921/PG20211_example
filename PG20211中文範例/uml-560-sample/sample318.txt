@@ -1,0 +1,18 @@
+#include <list>			@@@//¤Ş¤JlistÃş§O
+#include <iostream>
+using namespace std;
+
+int main(void)
+{
+	list<int> List;			@@@//©w¸qlistÃş§Oª«¥ó
+	list<int>::iterator Ite;	@@@//©w¸qiterator
+	int i;
+
+	for(i = 1; i <= 100; i++) {@@@//µn¿ı100¥ó¸ê®Æ
+		List.push_back(i);
+	}
+	//¦b­¡¥N¾¹µn¿ılistÃş§Oª«¥ó¡AµM«á¨Ï¥Î°j°éª½¨ì¨ì¹Fµn¿ı¸ê®Æªº³Ì«á
+	for(Ite = List.begin();Ite != List.end();Ite++) {
+		//Åã¥Üµn¿ı¸ê®Æ
+		cout << "Num = " << ?Ite << "\n";
+	}

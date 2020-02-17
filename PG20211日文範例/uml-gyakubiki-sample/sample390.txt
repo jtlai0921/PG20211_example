@@ -1,0 +1,45 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim aSubject As Subject = New Proxy()
+        aSubject.Request()
+        aSubject.Request()
+    End Sub
+
+End Module
+
+MustInherit Class Subject
+    Public MustOverride Sub Request()
+End Class
+
+Class RealSubject
+    Inherits Subject
+
+    Private s As String
+
+    Public Sub New()
+        s = "Real Subject is born."
+    End Sub
+
+    Public Overrides Sub Request()
+        Console.WriteLine(s)
+    End Sub
+
+End Class
+
+Class Proxy
+
+    Inherits Subject
+    Private rs As RealSubject
+
+    Public Overrides Sub Request()
+        If IsNothing(rs) = True Then
+            rs = New RealSubject()
+            rs.Request()
+        Else
+            Console.WriteLine("Real Subject is here.")
+        End If
+    End Sub
+End Class

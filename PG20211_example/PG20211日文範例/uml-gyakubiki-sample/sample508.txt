@@ -1,0 +1,7 @@
+
+
+Public Class Calculator
+    Public Function Addition(ByVal a As Integer,  ByVal b As Integer) As Integer
+        Return False
+    End Function
+End Class

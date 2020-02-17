@@ -1,0 +1,9 @@
+public class SampleClass {
+
+    public static void main(String[] args) {
+            int a[];
+            a = new int [3];
+
+            System.out.println(a.length);   //配列のサイズを表示する
+    }
+}

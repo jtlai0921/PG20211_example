@@ -1,0 +1,13 @@
+public class MyMain {
+	public static void main(String[] args) {
+		int a = 0;
+
+		try{
+			int b = 10 / a; 	// 以0做為除數，發生例外
+			System.out.println(10 + " / " + a + " = " + b);
+		}
+		catch(ArithmeticException e) {
+			System.out.println("發生例外了");
+		}
+	}
+}

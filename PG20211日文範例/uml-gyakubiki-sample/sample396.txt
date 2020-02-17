@@ -1,0 +1,59 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim s As Subject = New Subject()
+
+        Dim moa As ObserverA = New ObserverA()
+        Dim mob As ObserverB = New ObserverB()
+
+        s.AddObserver(moa)
+        s.AddObserver(mob)
+
+        s.aStateChange(1)
+        s.aStateChange(2)
+        s.aStateChange(3)
+    End Sub
+
+End Module
+
+Class Subject
+    Dim observers As ArrayList = New ArrayList()
+
+    Dim i As Integer
+
+    Public Sub AddObserver(ByVal observer As Observer)
+        observers.Add(observer)
+    End Sub
+
+    Public Sub aStateChange(ByVal j As Integer)
+        For i = 0 To observers.Count - 1
+            Dim observer As Observer = observers.Item(i)
+            observer.done("a State Change(" + Format(j) + ")")
+        Next
+    End Sub
+
+End Class
+
+Interface Observer
+    Sub done(ByVal s As String)
+End Interface
+
+Class ObserverA
+    Implements Observer
+
+    Public Sub done(ByVal s As String) Implements Observer.done
+        Console.WriteLine("ObserverA : received -" + s)
+    End Sub
+
+End Class
+
+Class ObserverB
+    Implements Observer
+
+    Public Sub done(ByVal s As String) Implements Observer.done
+        Console.WriteLine("ObserverB : received -" + s)
+    End Sub
+
+End Class

@@ -1,0 +1,10 @@
+print AreaSize(2)."\n";
+print AreaSize(2,1)."\n";
+sub AreaSize{
+    if($#_==0){
+	return $_[0]*$_[0];
+    }
+    else{
+	return $_[0]*$_[1];
+    }
+}

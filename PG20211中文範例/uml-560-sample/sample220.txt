@@ -1,0 +1,19 @@
+class MyMain {
+   public static void main(String args[]) {
+		Rectangle r1 = new Rectangle(2);
+		Rectangle r2 = new Rectangle(2, 1);
+   }
+}
+
+class Rectangle {
+
+    // ―縩
+    Rectangle(int h) { // 癸篶Α秈︽更(更)
+        System.out.println("Square Area Size = "+ (h * h));
+    }
+
+    // ―縩
+    Rectangle(int h, int w) { //  癸篶Α秈︽更(更)
+           System.out.println("Rectangle Area Size = "+ (h * w));
+    }
+}

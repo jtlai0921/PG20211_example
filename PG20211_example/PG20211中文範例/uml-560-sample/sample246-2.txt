@@ -1,0 +1,29 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class MyMain extends JPanel {
+	JButton b;
+
+	MyMain() {
+		b = new JButton("Hello");
+		add(b);
+		ActionListener aa = new ActionAdapter();
+		b.addActionListener(aa);
+	}
+
+	public static void main(String[] args) {
+		JFrame f = new JFrame("Button Example");
+		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+		MyMain button = new MyMain();
+		f.getContentPane().add(button, BorderLayout.CENTER);
+		f.pack();
+		f.setVisible(true);
+	}
+}
+//繼承了ActionListener的類別
+class ActionAdapter implements ActionListener {
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("滑鼠的鈕被按下了");
+	}
+}

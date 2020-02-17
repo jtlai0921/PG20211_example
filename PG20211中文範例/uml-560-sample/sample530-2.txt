@@ -1,0 +1,5 @@
+Public Sub TestSubtraction()
+    Dim c As Calculator
+    Set c = New Calculator
+    m_assert.VariantsEqual 1, c.subtraction(2, 1)
+End Sub

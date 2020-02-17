@@ -1,0 +1,14 @@
+public class MyMain {
+    public static void main(String[] args) {
+        int a[];       	//　配列を入れるための変数の宣言
+        a = new int [3];  	//　配列の領域を確保し、変数に代入
+
+        a[0]=0;
+        a[1]=1;
+        a[2]=2;
+
+        System.out.println(a[0]);
+        System.out.println(a[1]);
+        System.out.println(a[2]);
+    }
+}

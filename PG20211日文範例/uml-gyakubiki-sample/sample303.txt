@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+class B{
+private:
+  int x;
+public:
+  B(){
+    cout << "Object B" << endl;
+  }
+
+  void setX(int xx){
+    x=xx;
+  }
+
+  int getX(){
+    return x;
+  }
+};
+
+class A{
+private:
+  B _b;@				//\¬W–ñ
+public:
+  B& getB(){
+    return _b;
+  }
+};
+
+int main(void){
+  A _a;
+  _a.getB().setX(100);
+  cout << _a.getB().getX() << endl;
+
+  return 0;
+}

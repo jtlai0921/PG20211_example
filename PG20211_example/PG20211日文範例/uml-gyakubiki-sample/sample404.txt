@@ -1,0 +1,77 @@
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+//
+//Builderパターン
+//
+class Builder{
+public:
+  virtual void AddNumber(const char* c){
+  }
+  virtual void AddPlusOperator(){
+  }
+  virtual void AddEqualOperator(){
+  }
+};
+
+class EquationBuilder : public Builder{　	//式を作るBuilder
+  string s;
+public:
+  void AddNumber(const char* c){
+    s.append(c);
+  }
+  void AddPlusOperator(){
+    s.append("+");
+  }
+  void AddEqualOperator(){
+    s.append("=");
+  }
+  string& GetValue(){
+    return s;
+  }
+};
+
+class EnglishBuilder : public Builder{ 	//英語表現を作るBuilder
+  string s;
+public:
+  void AddNumber(const char* c){
+    s.append(c);
+    s.append(" ");
+  }
+  void AddPlusOperator(){
+    s.append("plus ");
+  }
+  void AddEqualOperator(){
+    s.append("is ");
+  }
+  string& GetValue(){
+    return s;
+  }
+};
+
+class Director{
+public:
+  void Create(Builder& builder){
+    builder.AddNumber("1");
+    builder.AddPlusOperator();
+    builder.AddNumber("1");
+    builder.AddEqualOperator();
+    builder.AddNumber("2");
+  }
+};
+
+int main(void)
+{
+  Director director;
+
+  EquationBuilder equation;
+
+  director.Create(equation);
+  cout << equation.GetValue() << endl;
+  EnglishBuilder english;
+  director.Create(english);
+  cout << english.GetValue() << endl;
+}

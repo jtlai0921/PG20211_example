@@ -1,0 +1,39 @@
+
+
+#include <iostream>
+using namespace std;
+
+class Interface{　			//インターフェイスクラス
+public:
+  virtual void SetData(int i)=0;
+  virtual int GetData()=0;
+};
+class Adaptee{　			//実装クラス
+  int number;
+public:
+
+  void SetNumber(int i){　		//SetData()と同機能のメソッド
+    number=i;
+  }
+  int GetNumber(){　			//GetData()と同機能のメソッド
+    return number;
+  }
+};
+
+class Adapter : public Interface{　	//アダプタ
+  Adaptee anAdaptee;
+public:
+  void SetData(int i){
+    anAdaptee.SetNumber(i);
+  }
+  int GetData(){
+    return anAdaptee.GetNumber();
+  }
+};
+
+int main(void)
+{
+  Interface* object=new Adapter;
+  object->SetData(42);
+  cout << object->GetData() << endl;
+}

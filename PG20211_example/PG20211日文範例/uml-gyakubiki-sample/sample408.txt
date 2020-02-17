@@ -1,0 +1,28 @@
+
+
+#include <iostream>
+using namespace std;
+class ImplementationClassA{　		//実装クラス
+public:
+  const char* getImplementName(){
+    return "Implement-A";
+  }
+};
+
+class ClassA{　			//外部から見たインターフェイスクラス
+  ImplementationClassA ica;
+public:
+  const char* getClassName(){
+    return "Class-A";
+  }
+  const char* getImplementName(){	//実装クラスを呼び出す
+    return ica.getImplementName();
+  }
+};
+
+int main(void)
+{
+  ClassA ca;
+    cout << ca.getClassName() << endl;
+  cout << ca.getImplementName() << endl;
+}

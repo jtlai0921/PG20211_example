@@ -1,0 +1,36 @@
+
+
+class MyMain{
+    public static void main(String[] args){
+		ClassA ca=new ClassA("Hello");
+		MessageDecorator decorator=new MessageDecorator(ca);
+
+		decorator.Print();
+    }
+}
+
+interface Message{
+    void Print();
+}
+
+class ClassA implements Message{
+    String msg;
+    public ClassA(String m){
+		msg=m;
+    }
+    public void Print(){
+		System.out.print(msg);
+    }
+}
+
+class MessageDecorator implements Message{　	//Decoratorパターン
+    Message ca;
+    public MessageDecorator(ClassA c){
+		ca=c;
+    }
+    public void Print(){
+		System.out.print("( ");
+		ca.Print();
+		System.out.println(" )");
+    }
+}

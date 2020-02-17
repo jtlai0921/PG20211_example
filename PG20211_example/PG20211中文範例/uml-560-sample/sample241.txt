@@ -1,0 +1,26 @@
+public class MyMain {
+	public static void main(String[] args) {
+		Calculator c = new Calculator();
+		
+		try{
+			System.out.println(c.division(10, 0));
+		}catch(MyException e){
+			System.out.println("例外發生了:MyException");
+		}
+	}
+}
+
+class MyException extends Exception {
+}
+
+class Calculator {
+	public int division(int a, int b) throws MyException {
+		if (b == 0) {
+			MyException e = new MyException();
+			throw e;
+		}else{
+			System.out.print(a + " / " + b + " = ");
+			return a / b;
+		}
+	}
+}

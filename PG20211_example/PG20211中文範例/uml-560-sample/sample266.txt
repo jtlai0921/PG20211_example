@@ -1,0 +1,49 @@
+VB.NET:
+Module Module1
+
+    Sub Main()
+
+        Dim _b As B = New B()
+
+        _b.setX(100)
+        Dim _a As A = New A()
+        _a.getB().setX(100)
+        Console.WriteLine(Format(_a.getB().getX()))
+
+    End Sub
+
+End Module
+
+Class A
+    Private _b As B
+
+    Public Sub New()
+        setB()
+    End Sub
+
+    Sub setB()
+        _b = New B()
+    End Sub
+
+    Public Function getB() As B
+        Return _b
+    End Function
+
+End Class
+
+Class B
+    Dim x As Integer
+
+    Public Sub New()
+        Console.WriteLine("Object B")
+    End Sub
+
+    Public Sub setX(ByVal x As Integer)
+        Me.x = x
+    End Sub
+
+    Public Function getX() As Integer
+        Return x
+    End Function
+
+End Class

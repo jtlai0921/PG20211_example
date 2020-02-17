@@ -1,0 +1,75 @@
+
+
+#include <iostream>
+using namespace std;
+
+class Food{
+public:
+  virtual void PrintName()=0;
+};
+
+class Fruit : public Food{　	//果物の定義
+};
+
+class Vegetable : public Food{　	//野菜の定義
+};
+
+
+class Apple : public Fruit{
+public:
+  void PrintName(){
+    cout << "Apple" << endl;
+  }
+};
+
+class Tomato : public Vegetable{
+public:
+  void PrintName(){
+    cout << "Tomato" << endl;
+  }
+};
+
+class Banana : public Fruit{
+public:
+  void PrintName(){
+    cout << "Banana" << endl;
+  }
+};
+
+class Carrot : public Vegetable{
+public:
+  void PrintName(){
+
+    cout << "Carrot" << endl;
+  }
+};
+
+
+class Foods{　				//果物と野菜を返すインターフェイス
+public:
+  virtual Fruit* CreateFruit()=0;
+  virtual Vegetable* CreateVegetable()=0;
+};
+
+class ConcreteFoods{
+public:
+  Fruit* CreateFruit(){　		//果物としてAppleを返す
+    return new Apple();
+  }
+  Vegetable* CreateVegetable(){　	//野菜としてTomatoを返す
+    return new Tomato();
+  }
+};
+
+int main(void)
+{
+  ConcreteFoods foods;
+  Fruit* aFruit=foods.CreateFruit();
+  Vegetable* aVegetable=foods.CreateVegetable();
+
+  aFruit->PrintName();
+  aVegetable->PrintName();
+
+  delete aFruit;
+  delete aVegetable;
+}

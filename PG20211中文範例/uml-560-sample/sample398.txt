@@ -1,0 +1,44 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim s1 As Strategy = New Strategy("A")
+        Dim s2 As Strategy = New Strategy("B")
+        Dim s3 As Strategy = New Strategy("C")
+        Dim mc As My_Class = New My_Class(s1)
+
+        mc.Operation()
+
+        mc.changeStrategy(s2)
+        mc.Operation()
+        mc.changeStrategy(s3)
+        mc.Operation()
+    End Sub
+
+End Module
+
+Class My_Class
+    Dim currentStrategy As Strategy
+
+    Public Sub New(ByVal initialStrategy As Strategy)
+        currentStrategy = initialStrategy
+    End Sub
+
+    Public Sub changeStrategy(ByVal newStrategy As Strategy)
+        currentStrategy = newStrategy
+    End Sub
+
+    Public Sub Operation()
+        Console.WriteLine("Current Strategy : " + currentStrategy.strategy)
+    End Sub
+
+End Class
+
+Class Strategy
+    Public strategy As String
+
+    Public Sub New(ByVal strategy As String)
+        Me.strategy = strategy
+    End Sub
+End Class

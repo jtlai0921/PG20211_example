@@ -1,0 +1,57 @@
+
+
+import java.util.*;
+
+class MyMain {
+   public static void main(String args[]) {
+      String s = "State-";
+
+      CareTaker ct = new CareTaker();
+
+      Originator o = new Originator();
+      o.ChangeState(); 	//ª«¥ó(o)Åıª¬ºA²£¥ÍÅÜ¤Æ
+      ct._add(o.CreateMemento());
+//CareTakerª«¥ó(ct)§â(o)ªºª¬ºA«OºŞ¦bª«¥ó(memento)¤¤
+
+      System.out.println(s + String.valueOf(o.s));
+      o.ChangeState(); 		//ª«¥ó(o)Åıª¬ºA²£¥ÍÅÜ¤Æ
+      ct._add(o.CreateMemento());
+//CareTakerª«¥ó(ct)§â(o)ªºª¬ºA«OºŞ¦bª«¥ó(memento)¤¤
+      System.out.println(s + String.valueOf(o.s));
+
+      o.SetMemento(ct._set(0)); //ª«¥ó(o)Åıª¬ºA´_­ì
+      System.out.println(s + String.valueOf(o.s));
+   }
+}
+class Originator {@			//«ù¦³¤º³¡ª¬ºAªºª«¥ó
+	String state = "a State Change";
+	int s = 0;
+
+   void ChangeState() {
+      System.out.println(state);
+      s++;
+   }
+   Memento CreateMemento() {
+      return new Memento(s);
+   }
+   void SetMemento(Memento memento) {
+      this.s = memento.s;
+   }
+}
+class Memento {@			//«ù¦³¤º³¡ª¬ºAªºª«¥ó
+   int s;
+   Memento(int s) {
+      this.s = s;
+   }
+}
+
+class CareTaker {@// Mement
+   ArrayList mementos = new ArrayList();
+
+   void _add(Memento memento) {
+      mementos.add(memento);
+   }
+   Memento _set(int index) {
+      return (Memento) mementos.get(index);
+   }
+}

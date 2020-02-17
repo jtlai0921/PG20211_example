@@ -1,0 +1,40 @@
+#include	<iostream>
+using namespace std;
+
+class _Rectangle {
+protected:
+	int h;
+	int w;
+
+public:
+	void Init(int hh, int ww) {
+		h = hh;
+		w = ww;
+	}
+
+	virtual void AreaSize() {
+	 	cout << "_Rectangle Area Size = " << (h – w) << endl;
+	}
+};
+
+class Square :public _Rectangle {
+public:
+	virtual void AreaSize() {
+		cout << "Square Area Size= " << (h – h) << endl;
+	}
+};
+
+int main(void) {
+	_Rectangle– r = new _Rectangle;
+	r->Init(2, 1);
+
+	r->AreaSize();
+
+
+	Square–  s = new Square;
+	s->Init(2, 1);
+
+	s->AreaSize();
+
+	return 0;
+};

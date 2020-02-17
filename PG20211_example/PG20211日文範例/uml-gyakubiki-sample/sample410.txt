@@ -1,0 +1,42 @@
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Message{　			//メッセージを表示するクラス
+public:
+  virtual void Print()=0;
+};
+
+class ClassA : public Message{
+  const char* msg;
+public:
+  ClassA(const char* m){
+    msg=m;
+  }
+  void Print(){
+    cout << msg;
+  }
+};
+//メッセージに表示を追加するデコレータ
+class MessageDecorator : public Message{
+  Message* ca;
+public:
+  MessageDecorator(ClassA& c){
+    ca=&c;
+  }
+
+  void Print(){
+    cout << "Message: ";
+    ca->Print();
+    cout << "." << endl;
+  }
+};
+
+int main(void)
+{
+  ClassA ca("Hello");
+  MessageDecorator decorator(ca);
+  decorator.Print();
+}

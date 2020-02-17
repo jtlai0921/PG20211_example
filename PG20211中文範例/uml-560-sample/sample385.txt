@@ -1,0 +1,37 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim ca As ClassA = New ClassA()
+        Console.WriteLine(ca.getClassName)
+        Console.WriteLine(ca.getImplementName)
+    End Sub
+
+End Module
+
+Class ClassA
+
+    Dim ica As ImplementClassA
+    Public Sub New()
+        ica = New ImplementClassA()
+    End Sub
+
+    Public Function getClassName() As String
+        Return "Class-A"
+    End Function
+
+    Public Function getImplementName() As String
+
+        Return ica.getImplementName()
+    End Function
+
+End Class
+
+Class ImplementClassA
+
+    Public Function getImplementName() As String
+        Return "Implement-A"
+    End Function
+
+End Class

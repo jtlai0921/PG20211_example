@@ -1,0 +1,42 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim f As Facade = New Facade()
+
+
+        f.Method()
+    End Sub
+
+End Module
+
+Class Facade
+    Public Sub Method()
+        Dim ca As ClassA = New ClassA()
+        Dim cb As ClassB = New ClassB()
+
+        ca.Method1()
+        ca.Method2()
+        cb.Method1()
+        cb.Method2()
+    End Sub
+End Class
+
+Class ClassA
+    Public Sub Method1()
+        Console.WriteLine("ClassA Method1")
+    End Sub
+    Public Sub Method2()
+        Console.WriteLine("ClassA Method2")
+    End Sub
+End Class
+
+Class ClassB
+    Public Sub Method1()
+        Console.WriteLine("ClassB Method1")
+    End Sub
+    Public Sub Method2()
+        Console.WriteLine("ClassB Method2")
+    End Sub
+End Class

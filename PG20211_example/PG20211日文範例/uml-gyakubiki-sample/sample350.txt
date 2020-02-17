@@ -1,0 +1,23 @@
+
+my $a=A->new;
+my $b=B->new;
+$a->print;
+$b->print;
+package A;
+sub print{
+    print "A::print´n";
+}
+
+package B;
+package UNIVERSAL;
+
+sub new{
+    my $proto=shift;
+    $proto=ref($proto) || $proto;
+    my $self={};
+    bless $self,$proto;
+}
+
+sub print{
+    print "UNIVERSAL::print´n";
+}

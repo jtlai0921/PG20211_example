@@ -1,0 +1,43 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim o As ClassA = New ClassA()
+        o.price(100)
+        o.price(10)
+
+    End Sub
+
+End Module
+
+Class ClassA
+
+
+    Dim _next As ClassB
+
+    Public Sub New()
+        _next = New ClassB()
+    End Sub
+    Public Sub price(ByVal money As Integer)
+        Console.WriteLine("You have " + Format(money)  + " YEN")
+        If money >= 100 Then
+            Console.WriteLine("You can buy this(100YEN).")
+            _next.price(money)
+        Else
+            Console.WriteLine("You can't buy this(100YEN).")
+            _next.price(money)
+        End If
+    End Sub
+End Class
+
+Class ClassB
+    Public Sub price(ByVal money As Integer)
+        Console.WriteLine("You have " + Format(money)  + " YEN")
+        If money >= 50 Then
+            Console.WriteLine("You can buy this(50YEN).")
+        Else
+            Console.WriteLine("You can't buy this(50YEN).")
+        End If
+    End Sub
+End Class

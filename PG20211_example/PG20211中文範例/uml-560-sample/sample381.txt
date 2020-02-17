@@ -1,0 +1,47 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim b1 As Builder = New Builder()
+        Dim da As DirectorA = New DirectorA()
+        Dim o1 As My_Class = da.createObject(b1)
+        Console.WriteLine("(1 + 2) * 3 : " + Format(o1.result))
+
+        Dim b2 As Builder = New Builder()
+        Dim db As DirectorB = New DirectorB()
+        Dim o2 As My_Class = db.createObject(b2)
+        Console.WriteLine("(1 + (2* 3) : " + Format(o2.result))
+    End Sub
+End Module
+
+Class My_Class
+    Public result As Integer
+
+    Sub New(ByVal result As Integer)
+        Me.result = result
+    End Sub
+End Class
+
+Class Builder
+    Public Function addition(ByVal a As Integer, ByVal  b As Integer) As Integer
+        Return a + b
+    End Function
+    Public Function multiplication(ByVal a As Integer, ByVal b As Integer) As Integer
+        Return a * b
+
+    End Function
+
+End Class
+
+Class DirectorA
+    Public Function createObject(ByVal b As Builder) As My_Class
+        Return New My_Class(b.multiplication (b.addition(1, 2), 3))
+    End Function
+End Class
+
+Class DirectorB
+    Public Function createObject(ByVal b As Builder) As My_Class
+        Return New My_Class(b.addition (1,b.multiplication(2, 3)))
+    End Function
+End Class

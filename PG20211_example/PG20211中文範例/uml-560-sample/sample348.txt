@@ -1,0 +1,8 @@
+
+my @v;
+push @v,0;
+push @v,1;
+push @v,2;
+for(@v){
+    print "$_\n";
+}

@@ -1,0 +1,39 @@
+
+
+class MyMain{
+    public static void main(String[] args){
+		Subject aSubject=new Proxy("Message");
+
+		aSubject.Request();
+		aSubject.Request();
+    }
+}
+
+interface Subject{
+    void Request();
+}
+
+class RealSubject implements Subject{
+    String s;
+    public RealSubject(String msg){
+		s=msg;
+    }
+    public void Request(){
+		System.out.println(s);
+    }
+}
+
+class Proxy implements Subject{
+    String s;
+    RealSubject rs;
+    public Proxy(String msg){
+		rs=null;
+		s=msg;
+    }
+    public void Request(){
+		if(rs==null){　		//使用時にオブジェクトを作成
+	    		rs=new RealSubject(s);
+		}
+		rs.Request();
+    }
+}

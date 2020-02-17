@@ -1,0 +1,26 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim aCreatorA As CreatorA = New CreatorA()
+        Dim aProductA As ConcreteProductA =  aCreatorA.FactoryMethod()
+    End Sub
+
+End Module
+
+Class CreatorA
+
+    Public Function FactoryMethod() As ConcreteProductA
+        Return New ConcreteProductA()
+    End Function
+
+End Class
+
+Class ConcreteProductA
+
+    Public Sub New()
+        Console.WriteLine("ConcreteProductA")
+    End Sub
+
+End Class

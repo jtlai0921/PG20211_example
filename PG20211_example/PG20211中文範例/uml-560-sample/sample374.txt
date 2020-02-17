@@ -1,0 +1,63 @@
+
+
+class MyMain{
+    public static void main(String[] args){
+		MyClass my=new MyClass();
+
+		my.Operation();@	// ª¬ºAÅÜ¤Æ
+		my.Operation();
+		my.Operation();
+		my.Operation();
+    }
+}
+
+class MyClass{@			// «ù¦³ª¬ºAªºª«¥ó
+    State current;
+    public MyClass(){
+		ChangeState(new State1(this));
+    }
+    public void ChangeState(State next){@//ª¬ºA¾E²¾
+		current=next;
+    }
+    public void Operation(){
+		current.Operation();
+    }
+};
+
+abstract class State{@		//ª¬ºAªºª«¥ó
+    protected MyClass my;
+    public State(MyClass m){
+		my=m;
+    }
+    abstract public void Operation();@	//¸Óª¬ºA¤Uªº³B²z
+}
+
+class State1 extends State{
+    public State1(MyClass m){
+		super(m);
+    }
+    public void Operation(){
+		System.out.println("State1 operation");
+		my.ChangeState(new State2(my));
+    }
+}
+class State2 extends State{
+    public State2(MyClass m){
+		super(m);
+    }
+    public void Operation(){
+		System.out.println("State2 operation");
+
+		my.ChangeState(new State3(my));
+    }
+}
+
+class State3 extends State{
+    public State3(MyClass m){
+		super(m);
+    }
+    public void Operation(){
+		System.out.println("State3 operation");
+		my.ChangeState(new State1(my));
+    }
+}

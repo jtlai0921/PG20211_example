@@ -1,0 +1,53 @@
+my $_b=new B();
+$_b->setX(100);
+my $_a=A->new($_b);
+my $another_a=A->new($_b);
+print $_a->getB()->getX()."´n";
+print $another_a->getB()->getX()."´n";
+
+package A;
+use fields qw(b);
+
+sub new{
+    my $proto=shift;
+    $proto=ref($proto) || $proto;
+    my $self=fields::new($proto);
+    $self->setB(shift);
+    return $self;
+}
+
+sub setB{
+    my $self=shift;
+    my $value=shift;
+    $self->{b}=$value;
+}
+
+sub getB{
+    my $self=shift;
+    return $self->{b};
+}
+
+
+package B;
+use fields qw(_x);
+
+sub new{
+    my $proto=shift;
+    $proto=ref($proto) || $proto;
+    my $self=fields::new($proto);
+
+    print "object B´n";
+
+    return $self;
+}
+
+sub setX{
+    my $self=shift;
+    my $value=shift;
+    $self->{_x}=$value;
+}
+
+sub getX{
+    my $self=shift;
+    return $self->{_x};
+}

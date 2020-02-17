@@ -1,0 +1,45 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim aMediator as Mediator = New Mediator()
+
+        Dim ObjectA As My_Class = New My_Class("A")
+        Dim ObjectB As My_Class = New My_Class("B")
+        Dim ObjectC As My_Class = New My_Class("C")
+
+        aMediator.add(ObjectA)
+        aMediator.add(ObjectB)
+        aMediator.add(ObjectC)
+    End Sub
+
+End Module
+
+Class My_Class
+    Public name As String
+
+    Public Sub New(ByVal name As String)
+        Me.name = name
+    End Sub
+
+    Public Sub memberAdded(ByVal name As String)
+        Console.WriteLine(Me.name + " : Welcome , Object -" + name)
+    End Sub
+
+End Class
+
+
+Class Mediator
+    Dim i As Integer
+    Dim aObject As My_Class
+    Dim members As ArrayList = New ArrayList()
+
+    Public Sub add(ByVal newMember As My_Class)
+        For i = 0 To members.Count - 1
+            aObject = members.Item(i)
+            aObject.memberAdded(newMember.name)
+        Next
+        members.Add(newMember)
+    End Sub
+End Class

@@ -1,0 +1,27 @@
+#include	<iostream>
+using namespace std;
+class MyClass {
+	static	int a;
+public:
+	static	void showA( ) { 	//静的メソッド
+		cout << "a(by class method): " <<  a  << endl;
+	}
+	void setA(int n) {
+		a = n;
+	}
+	int getA() {
+		return a;
+	}
+};
+
+int MyClass::a = 0;
+int main(void) {
+	MyClass* mc1 = new MyClass;
+	MyClass* mc2 = new MyClass;
+
+	mc1->setA( 100 );
+	cout << "a(by object method): " << mc2->getA() << endl;
+	MyClass::showA();
+
+	return 0;
+};"

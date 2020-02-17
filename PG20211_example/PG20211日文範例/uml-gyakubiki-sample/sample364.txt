@@ -1,0 +1,57 @@
+
+
+class MyMain{
+    public static void main(String[] args){
+		Leaf leaf1=new Leaf("Leaf1");
+
+		Leaf leaf2=new Leaf("Leaf2");
+		Leaf leaf3=new Leaf("Leaf3");
+		Leaf leaf4=new Leaf("Leaf4");
+
+		Cons cons1=new Cons(leaf1,leaf2);
+		Cons cons2=new Cons(leaf3,leaf4);
+		Cons cons3=new Cons(cons1,cons2);
+
+		System.out.print("Leaf1 = ");
+		leaf1.Print();
+		System.out.println("");
+
+		System.out.print("Cons1 = ");
+		cons1.Print();
+		System.out.println("");
+
+		System.out.print("Cons3 = ");
+		cons3.Print();
+		System.out.println("");
+    }
+}
+
+interface Node{Å@			//CompositÇÃíËã`
+    void Print();
+}
+
+class Cons implements Node{		//Composite ÇªÇÃ1
+    Node child1;
+    Node child2;
+    public Cons(Node c1,Node c2){
+		child1=c1;
+		child2=c2;
+    }
+    public void Print(){
+		System.out.print("(");
+		child1.Print();
+		System.out.print(" ");
+		child2.Print();
+		System.out.print(")");
+    }
+}
+class Leaf implements Node{		//Composite ÇªÇÃ2
+    String name;
+
+    public Leaf(String s){
+		name=s;
+    }
+    public void Print(){
+		System.out.print(name);
+    }
+}

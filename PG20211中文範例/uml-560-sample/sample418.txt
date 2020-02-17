@@ -1,0 +1,70 @@
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Memento;
+
+class Originator{@			//«ù¦³¤º³¡ª¬ºAªºª«¥ó
+
+public:
+  int s;
+  Originator(){
+    s=0;
+  }
+  void ChangeState(){
+    cout << "a State Change" << endl;
+    s++;
+  }
+  Memento* CreateMemento();
+  void SetMemento(Memento* mem);@	//±N¤º³¡ª¬ºA¦s¨ìMemento‚É•Û‘¶
+};
+
+class Memento{@			//«ù¦³¤º³¡ª¬ºAªºª«¥ó
+  int s;
+  friend class Originator;
+public:
+  Memento(int val){
+    s=val;
+  }
+};
+
+class CareTaker{
+  vector<Memento*> mementos;
+public:
+  void _add(Memento* memento){
+    mementos.push_back(memento);
+  }
+  Memento* _set(int index){
+    return mementos[index];
+  }
+};
+
+Memento* Originator::CreateMemento(){
+  return new Memento(s);
+}
+
+void Originator::SetMemento(Memento* mem){
+  s=mem->s;
+}
+
+int main(void)
+{
+
+  char* s="State-";
+  CareTaker ct;
+  Originator o;
+
+  o.ChangeState();
+  ct._add(o.CreateMemento());
+  cout << s << o.s << endl;
+
+  o.ChangeState();
+
+  ct._add(o.CreateMemento());
+  cout << s << o.s << endl;
+
+  o.SetMemento(ct._set(0));
+  cout << s << o.s << endl;
+}

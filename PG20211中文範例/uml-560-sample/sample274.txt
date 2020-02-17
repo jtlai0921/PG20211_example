@@ -1,0 +1,28 @@
+Module Module1
+
+    Sub Main()
+        Dim r As Rectangle = New Rectangle()
+        r.Init(2, 1)
+        r.AreaSize()
+    End Sub
+
+End Module
+
+Public Interface Area
+    Sub AreaSize()
+End Interface
+
+Class Rectangle
+    Implements Area '介面的實作
+    Private h As Integer
+    Private w As Integer
+
+    Public Sub Init(ByVal h As Integer, ByVal w As Integer)
+        Me.h = h
+        Me.w = w
+    End Sub
+    Public Sub AreaSize() Implements Area.AreaSize '方法的實作
+        Console.WriteLine("Rectangle Area Size = "  +Format(h * w))
+    End Sub
+
+End Class

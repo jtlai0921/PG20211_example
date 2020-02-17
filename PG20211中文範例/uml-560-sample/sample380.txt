@@ -1,0 +1,85 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim f As Foods = New ConcreteFoodA()
+        'Dim f As Foods = New ConcreteFoodB()
+
+        Dim aFruit As ConcreteFood1 = f.CreateFood1()
+        aFruit.PrintName()
+        Dim aVegetable As ConcreteFood2 = f.CreateFood2()
+        aVegetable.PrintName()
+    End Sub
+
+End Module
+
+Interface FoodName
+    Sub PrintName()
+End Interface
+
+MustInherit Class ConcreteFood1
+    Implements FoodName
+    Public MustOverride Sub PrintName() Implements FoodName.PrintName
+End Class
+
+MustInherit Class ConcreteFood2
+    Implements FoodName
+    Public MustOverride Sub PrintName() Implements FoodName.PrintName
+End Class
+
+MustInherit Class Foods
+    Public MustOverride Function CreateFood1() As ConcreteFood1
+    Public MustOverride Function CreateFood2() As ConcreteFood2
+End Class
+
+Class ConcreteFoodA
+    Inherits Foods
+
+    Public Overrides Function CreateFood1() As ConcreteFood1
+        Dim aApple As ConcreteFood1 = New ConcreteApple()
+        Return aApple
+    End Function
+
+    Public Overrides Function CreateFood2() As ConcreteFood2
+        Dim aTomato As ConcreteFood2 = New ConcreteTomato()
+        Return aTomato
+    End Function
+
+End Class
+
+Class ConcreteApple
+    Inherits ConcreteFood1
+
+    Public Overrides Sub PrintName()
+        Console.WriteLine("‚è‚ñ‚²")
+    End Sub
+
+End Class
+
+Class ConcreteTomato
+    Inherits ConcreteFood2
+
+    Public Overrides Sub PrintName()
+        Console.WriteLine("‚Æ‚Ü‚Æ")
+    End Sub
+
+End Class
+
+Class ConcreteBanana
+    Inherits ConcreteFood1
+
+    Public Overrides Sub PrintName()
+        Console.WriteLine("‚Î‚È‚È")
+    End Sub
+
+End Class
+
+Class ConcreteCarrot
+    Inherits ConcreteFood2
+
+    Public Overrides Sub PrintName()
+        Console.WriteLine("‚É‚ñ‚¶‚ñ")
+    End Sub
+
+End Class

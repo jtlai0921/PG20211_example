@@ -1,0 +1,38 @@
+
+
+class MyMain {
+	public static void main(String args[]) {
+		Facade f = new Facade();
+		f.Method();
+	}
+}
+
+class Facade { 		//汎用化されたメソッドの集合
+	public void Method() {
+		ClassA ca = new ClassA();
+		ClassB cb = new ClassB();
+
+		ca.Method1();
+		ca.Method2();
+		cb.Method1();
+		cb.Method2();
+	}
+}
+
+class ClassA {　		//外部には見えないクラス
+	public void Method1() {
+		System.out.println("ClassA Method1");
+	}
+	public void Method2() {
+		System.out.println("ClassA Method2");
+	}
+}
+
+class ClassB {　		//外部には見えないクラス
+	public void Method1() {
+		System.out.println("ClassB Method1");
+	}
+	public void Method2() {
+		System.out.println("ClassB Method2");
+	}
+}

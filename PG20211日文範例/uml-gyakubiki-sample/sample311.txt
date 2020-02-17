@@ -1,0 +1,27 @@
+#include	<iostream>
+using namespace std;
+
+class addition {
+public:
+	void add(int a, int b) {
+		cout << a << " + " << b << " = "  << (a + b) << endl;
+	}
+};
+
+class multiplication {
+public:
+	void multiply(int a, int b) {
+		cout << a << " – " << b << " = "  << (a – b) << endl;
+	}
+};
+
+class Calculator :public addition, public multiplication {
+};
+
+int main(void) {
+	Calculator– c = new Calculator;
+	c->add(2, 3);
+	c->multiply(2, 3);
+
+	return 0;
+};

@@ -1,0 +1,54 @@
+
+
+public class MyMain
+{
+   static public void main(String args[]){
+		String Context="12+3-4";
+
+		Number Literal1=new Number("4");
+		Number Literal2=new Number("12");
+		Number Literal3=new Number("3");
+		PlusOperator PlusOp=new PlusOperator(Literal2,Literal3);
+		MinusOperator FinalOp=new MinusOperator(PlusOp,Literal1);
+
+		System.out.println(Context + "=" + FinalOp.Interpret());
+   }
+}
+
+interface Expression{　		//式オブジェクト
+    public int Interpret();
+}
+
+class Number implements Expression{	//数値式
+    String value;
+    public Number(String s){
+		value=s;
+    }
+    public int Interpret(){
+		return Integer.parseInt(value);
+    }
+}
+
+class PlusOperator implements Expression{　	//加算式
+    Expression exp1;
+    Expression exp2;
+    public PlusOperator(Expression e1,Expression e2){
+		exp1=e1;
+		exp2=e2;
+    }
+    public int Interpret(){
+		return exp1.Interpret()+exp2.Interpret();
+    }
+}
+
+class MinusOperator implements Expression{	//減算式
+    Expression exp1;
+    Expression exp2;
+    public MinusOperator(Expression e1,Expression e2){
+		exp1=e1;
+		exp2=e2;
+    }
+    public int Interpret(){
+		return exp1.Interpret()-exp2.Interpret();
+    }
+}

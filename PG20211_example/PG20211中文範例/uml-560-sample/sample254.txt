@@ -1,0 +1,26 @@
+Module Module1
+
+    Sub Main()
+        Dim mc1 As My_Class = New My_Class()
+        Dim mc2 As My_Class = New My_Class()
+
+        mc1.setA(100)
+        Console.WriteLine("a(by object method): " + Format(mc2.getA()))
+        My_Class.showA()
+    End Sub
+
+End Module
+
+Class My_Class
+    Shared a As Integer
+    Shared Sub showA()
+        Console.WriteLine("a(by class method): " + Format(a))
+    End Sub
+    Sub setA(ByVal n As Integer)
+        a = n
+    End Sub
+    Function getA() As Integer
+        Return a
+    End Function
+
+End Class

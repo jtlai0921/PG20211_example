@@ -1,0 +1,32 @@
+
+
+#include <iostream>
+using namespace std;
+
+class Command{
+public:
+  virtual void process()=0;
+
+};
+
+class CommandA : public Command{
+public:
+  void process(){
+    cout << "Command A" << endl;
+  }
+};
+
+class CommandB : public Command{
+public:
+  void process(){
+    cout << "Command B" << endl;
+  }
+};
+int main(void)
+{
+  Command* commands[3]={new CommandA,new CommandB,new CommandA};
+
+  for(int i=0;i<3;i++){
+    commands[i]->process();
+  }
+}

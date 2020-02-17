@@ -1,0 +1,14 @@
+Class1->setA(100);
+Class1->showA();
+
+package Class1;
+
+our $a;
+
+sub showA{
+    print "a=$a´n";
+}
+sub setA{
+    my ($self,$n)=@_;
+    $a=$n;
+}

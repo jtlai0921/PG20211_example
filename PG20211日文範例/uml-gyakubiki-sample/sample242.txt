@@ -1,0 +1,19 @@
+
+import java.util.Vector;
+
+class SampleVector {
+	public static void main(String args[]) {
+		int i;
+		// 初期容量２つで足りなくなったら１個ずつ増加するようにインスタンス生成
+		Vector v = new Vector(2,1);
+		// 基本データ型は、ラッパークラスを使って格納
+		v.addElement(new Integer(0));
+		v.addElement(new Integer(1));
+		v.addElement(new Integer(2));
+		for(i = 0; i <= 2; i++) {
+			// 基本データ型は、ラッパークラスを経由して取得
+			System.out.println
+			(((Integer)v.elementAt(i)).intValue());
+		}
+	}
+}

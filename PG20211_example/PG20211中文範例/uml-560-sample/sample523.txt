@@ -1,0 +1,19 @@
+
+
+Option Explicit
+Implements IFixture
+
+Private m_assert As IAssert
+
+Private Sub IFixture_Setup(assert As IAssert)
+  Set m_assert = assert
+End Sub
+
+Private Sub IFixture_TearDown()
+End Sub
+
+Public Sub TestAddition()
+    Dim c As Calculator
+    Set c = New Calculator
+    m_assert.VariantsEqual 4, c.addition(2, 2)
+End Sub

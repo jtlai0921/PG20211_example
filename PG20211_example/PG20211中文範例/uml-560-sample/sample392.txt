@@ -1,0 +1,42 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim aCommand As Command = New Command()
+        Dim aService As Service = New Service()
+        aService.putCommand(aCommand)
+    End Sub
+
+End Module
+
+Class Command
+    Dim aService As Service
+
+    Public Sub setService(ByVal aService As Service)
+        Me.aService = aService
+    End Sub
+
+    Public Sub procCommand()
+        aService.Service1()
+        aService.Service2()
+    End Sub
+
+End Class
+
+Class Service
+
+    Public Sub putCommand(ByVal aCommand As Command)
+        aCommand.setService(Me)
+        aCommand.procCommand()
+    End Sub
+
+    Public Sub Service1()
+        Console.WriteLine("Service-1")
+    End Sub
+
+    Public Sub Service2()
+        Console.WriteLine("Service-2")
+    End Sub
+
+End Class

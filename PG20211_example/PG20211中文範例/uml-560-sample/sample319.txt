@@ -1,0 +1,29 @@
+#include	<iostream>
+#include	<vector> //引入vector類別
+using namespace std;
+
+class MyClass {
+public:
+	int no;
+	MyClass(int n) {
+		no = n;
+	}
+	int getNo() {
+		return no;
+	}
+};
+int main(void) {
+	vector<MyClass> v;
+	vector<MyClass>::iterator it;
+	int cnt;
+
+	for (cnt = 0; cnt < 10; cnt++) {	//追加資料
+		v.push_back(MyClass(cnt));
+	}
+									
+	//顯示資料
+	for (it = v.begin(); it != v.end(); it++) {
+		cout << ((MyClass)(?it)).getNo() << endl;
+	}
+	return 0;
+};

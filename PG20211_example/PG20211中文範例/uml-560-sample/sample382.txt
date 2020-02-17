@@ -1,0 +1,26 @@
+
+
+Module Module1
+
+    Sub Main()
+        Dim aPrototypeA As Prototype = New Prototype()
+        aPrototypeA.SetID(1)
+        Console.WriteLine(aPrototypeA.id)
+        Dim aPrototypeB As Prototype = aPrototypeA.Clone()
+        Console.WriteLine(aPrototypeB.id)
+    End Sub
+
+End Module
+
+Class Prototype
+    Public id As Integer = 0
+
+    Public Function Clone() As Prototype
+        Return Me
+    End Function
+
+    Public Sub SetID(ByVal i As Integer)
+        id = i
+    End Sub
+
+End Class

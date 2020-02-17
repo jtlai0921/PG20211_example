@@ -1,0 +1,42 @@
+
+
+#include <iostream>
+using namespace std;
+
+//内部で使用する実装クラス
+class ClassA{
+public:
+  void Method1(){
+    cout << "ClassA Method1" << endl;
+  }
+  void Method2(){
+    cout << "ClassA Method2" << endl;
+  }
+};
+class ClassB{
+public:
+  void Method1(){
+    cout << "ClassB Method1" << endl;
+  }
+  void Method2(){
+    cout << "ClassB Method2" << endl;
+  }
+};
+//外部から見たインターフェイス
+class Facade{
+  ClassA ca;
+  ClassB cb;
+public:
+  void Method(){
+    ca.Method1();
+    ca.Method2();
+    cb.Method1();
+    cb.Method2();
+  }
+
+};
+
+int main(void){
+  Facade f;
+  f.Method();
+}
